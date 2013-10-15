@@ -114,6 +114,9 @@ Links and resources
 *  AIF Document Services: http://msdn.microsoft.com/en-US/library/bb496530(v=ax.50).aspx
 *  AIF Document Service Classes: http://msdn.microsoft.com/en-US/library/cc582145(v=ax.50).aspx
 
+Contact
+====
+matias.juan@gmail.com
 
 
 
