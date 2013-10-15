@@ -64,6 +64,7 @@ database.pass=<db login password>
 #url to the WSDL
 dax.itemservice=ItemWDSL.xml
 #dax.itemservice=http://msps-win-01.mulesoft.demos.com/MicrosoftDynamicsAXAif50/itemservice.svc?wsdl
+```
 
 ```
 #DAX endpoint
