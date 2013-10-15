@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns:quartz="http://www.mulesoft.org/schema/mule/quartz"
+	xmlns:smtps="http://www.mulesoft.org/schema/mule/smtps"
+	xmlns:jdbc-ee="http://www.mulesoft.org/schema/mule/ee/jdbc" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/quartz http://www.mulesoft.org/schema/mule/quartz/current/mule-quartz.xsd
+http://www.mulesoft.org/schema/mule/smtps http://www.mulesoft.org/schema/mule/smtps/current/mule-smtps.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/ee/jdbc http://www.mulesoft.org/schema/mule/ee/jdbc/current/mule-jdbc-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    
+    
+    <jdbc-ee:mssql-data-source name="MS_SQL_Data_Source" 
+    	user="${database.user}" password="${database.pass}" url="${database.url}" 
+    	transactionIsolation="UNSPECIFIED" doc:name="MS SQL Data Source"/>
+    
+    <jdbc-ee:connector name="SQLServer_Database" dataSource-ref="MS_SQL_Data_Source" validateConnections="true" queryTimeout="-1" pollingFrequency="0" doc:name="Database">
+        <jdbc-ee:query key="selectNewProducts" value="select 
+  u_product_id,
+  u_product_name ,
+  u_item_group ,
+  u_inventory_model_group ,
+  u_dimension_group ,
+  sys_updated_on ,
+  state
+from [dbo].[SN_Product]
+Where 
+  state=11 and 
+   sys_updated_on = DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0)"/>
+    </jdbc-ee:connector>
+    <http:endpoint exchange-pattern="request-response" host="${http.host}" port="${http.port}" path="${http.path}" method="GET" name="PollHTTP" doc:name="HTTP"/>
+    
+	
+    <flow name="DynamicsAXFlow1" doc:name="DynamicsAXFlow1">
+        <quartz:inbound-endpoint jobName="job" responseTimeout="10000" doc:name="Quartz - every day at 1015 am" repeatInterval="2000" cronExpression="0 15 10 * * ?">
+            <quartz:endpoint-polling-job>
+                <quartz:job-endpoint ref="PollHTTP"/>
+            </quartz:endpoint-polling-job>
+        </quartz:inbound-endpoint>
+        <logger message="running" level="INFO" doc:name="Logger"/>
+    </flow>
+
+    
+    <flow name="Process-Product-Create" doc:name="Process-Product-Create">
+    	<http:inbound-endpoint exchange-pattern="request-response" 
+        	host="${http.host}" port="${http.port}" path="${http.path}" doc:name="HTTP"/>
+        	
+        <logger message="start product sync" level="INFO"  doc:name="log start"/>
+        <jdbc-ee:outbound-endpoint exchange-pattern="request-response" queryKey="selectNewProducts" queryTimeout="-1" connector-ref="SQLServer_Database" doc:name="Get New Products DB"/>
+        <logger message="db results #[payload] " level="INFO"  doc:name="log db results"/>
+        <set-variable variableName="dbresults" value="#[payload]" doc:name="Variable"/>
+        <foreach doc:name="For Each">
+            <set-variable variableName="currentProduct" value="#[payload]" doc:name="store product in var"/>
+            <flow-ref name="callDAX-create-product" doc:name="Call DAX to update/create item"/>
+            <logger message="call status: #[flowVars['callStatus']]" level="INFO"  doc:name="Log DAX call status"/>
+            <choice doc:name="Choice">
+                <when expression="flowVars['callStatus'] == 200">
+<!--                 	<logger message="dax web service response #[payload]" level="INFO"  doc:name="Log DAX call response"/> -->
+                	
+                    <foreach collection="#[payload.entityKeyList.entityKey]" counterVariableName="counter2" doc:name="For Each">
+                		<foreach collection="#[payload.keyData.keyField]" counterVariableName="counter3" doc:name="For Each">
+                			<logger message="dax web service response key-value pair: '#[payload.field]' : '#[payload.value]'" 
+                				level="INFO"  doc:name="Log DAX response contents : key-values"/>
+                		</foreach>
+                	</foreach>
+                	
+                    <tracking:custom-event event-name="product-creation" doc:name="Product Created">
+                        <tracking:meta-data key="product id" value="#[flowVars['currentProduct'].u_product_id]"/>
+                        <tracking:meta-data key="product name" value="#[flowVars['currentProduct'].u_product_name]"/>
+                        <tracking:meta-data key="product model group" value="#[flowVars['currentProduct'].u_inventory_model_group]"/>
+                        <tracking:meta-data key="created" value="#[true]"/>
+                    </tracking:custom-event>
+                    
+                    <set-payload value="product creation result: 
+		                        product id: #[flowVars['currentProduct'].u_product_id]
+		                        product name: #[flowVars['currentProduct'].u_product_name]
+		                        product model group: #[flowVars['currentProduct'].u_inventory_model_group]
+		                        created: #[true]
+		            " doc:name="Set Payload"/>
+                </when>
+                <otherwise>
+                    <tracking:custom-event event-name="product-creation" doc:name="Product Not Created">
+                        <tracking:meta-data key="product id" value="#[flowVars['currentProduct'].u_product_id]"/>
+                        <tracking:meta-data key="product name" value="#[flowVars['currentProduct'].u_product_name]"/>
+                        <tracking:meta-data key="product model group" value="#[flowVars['currentProduct'].u_inventory_model_group]"/>
+                        <tracking:meta-data key="created" value="#[false]"/>
+                    </tracking:custom-event>
+                    <set-payload value="product creation result: 
+		                        product id: #[flowVars['currentProduct'].u_product_id]
+		                        product name: #[flowVars['currentProduct'].u_product_name]
+		                        product model group: #[flowVars['currentProduct'].u_inventory_model_group]
+		                        created: #[false]
+		            " doc:name="Set Payload"/>
+                </otherwise>
+            </choice>
+            <logger message="#[payload]" level="INFO"  doc:name="Logger"/>
+        </foreach>
+        <set-payload value="done with processing products: #[flowVars['dbresults']]" doc:name="Set Payload"/>
+<!--         <smtps:outbound-endpoint host="smtp.gmail.com" user="matias.juan" password="xxxx" to="mjuan@mulesoft.com" from="matias.juan@gmail.com" subject="Employees Integration" responseTimeout="10000" doc:name="SMTP" port="465"/> -->
+        <logger message="End" level="INFO"  doc:name="Logger"/>
+    </flow>
+    
+    <flow name="callDAX-create-product" doc:name="callDAX-create-product">
+        <scripting:component doc:name="Create request object" >
+            <scripting:script engine="Groovy"><![CDATA[import com.microsoft.dynamics.ax.*;
+			
+com.microsoft.dynamics.ax.ItemServiceCreateRequest _create_parameters = null;
+
+ObjectFactory of = new ObjectFactory();
+_create_parameters = of.createItemServiceCreateRequest();
+			
+AxdItem item = of.createAxdItem();
+AxdEntityInventTable inventTableItem = of.createAxdEntityInventTable();
+inventTableItem.setItemId(of.createAxdEntityInventTableItemId(payload['u_product_id'])); //ItemId
+inventTableItem.setDimGroupId(payload['u_dimension_group']);
+inventTableItem.setItemGroupId(payload['u_item_group']);
+inventTableItem.setItemName(of.createAxdEntityInventTableItemName(payload['u_product_name']));
+inventTableItem.setModelGroupId(payload['u_inventory_model_group']);
+item.getInventTable().add(inventTableItem);
+
+_create_parameters.setItem(item);
+
+return _create_parameters;]]></scripting:script>
+        </scripting:component>
+        <set-variable variableName="callStatus" value="200" doc:name="set call status"/>
+        
+        <cxf:jaxws-client 
+        	operation="create" 
+        	clientClass="com.microsoft.dynamics.ax.ItemService_Service" 
+        	port="BasicHttpBinding_ItemService" wsdlLocation="${dax.itemservice}" doc:name="Create soap message"/>
+
+		<scripting:component doc:name="Invoke Service">
+            <scripting:script engine="Groovy">
+                <scripting:text><![CDATA[import java.io.BufferedReader;
+		import java.io.InputStreamReader;
+		import java.util.ArrayList;
+		import java.util.List;
+		import org.apache.http.HttpEntity;
+		import org.apache.http.HttpHost;
+		import org.apache.http.HttpResponse;
+		import org.apache.http.auth.AuthScope;
+		import org.apache.http.auth.NTCredentials;
+		import org.apache.http.auth.params.AuthPNames;
+		import org.apache.http.client.methods.HttpPost;
+		import org.apache.http.client.params.AuthPolicy;
+		import org.apache.http.entity.StringEntity;
+		import org.apache.http.impl.client.DefaultHttpClient;
+		import org.apache.http.protocol.BasicHttpContext;
+		import org.apache.http.protocol.HttpContext;
+		
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		List<String> authPreferences = new ArrayList<String>(); 
+        authPreferences.add(AuthPolicy.NTLM); 
+		authPreferences.add(AuthPolicy.BASIC);
+        httpClient.getParams().setParameter(AuthPNames.TARGET_AUTH_PREF, authPreferences); 
+
+		NTCredentials credentials = new NTCredentials("${ntlm.user}", "${ntlm.password}", "${ntlm.workstation}", "${ntlm.domain}");
+		httpClient.getCredentialsProvider().setCredentials(AuthScope.ANY, credentials);
+		
+		HttpHost httpHost = new HttpHost("${dax.host}", ${dax.port}, "http");
+		HttpContext localContext = new BasicHttpContext();
+		HttpPost httpPost = new HttpPost("${dax.path}"); //service path
+		httpPost.setEntity(new StringEntity(eventContext.getMessageAsString()));
+		httpPost.addHeader("Content-Type", "text/xml;charset=UTF-8");
+
+		httpPost.addHeader("SOAPAction", "${soap.action}");
+
+		HttpResponse response = httpClient.execute(httpHost, httpPost, localContext);
+		HttpEntity entity = response.getEntity();
+		InputStreamReader inputStreamReader = new InputStreamReader(entity.getContent());
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		StringBuilder stringBuilder = new StringBuilder();
+		String nextLine = null;
+		while ((nextLine = bufferedReader.readLine()) != null) {
+			stringBuilder.append(nextLine);
+		}
+		return stringBuilder.toString();]]></scripting:text>
+            </scripting:script>
+        </scripting:component>
+        <logger level="INFO" message="return #[payload]" doc:name="Logger"/>
+<!--         <set-variable variableName="callStatus" value="#[message.inboundProperties['http.status']]" doc:name="set call status"/> -->
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
+            <set-variable variableName="callStatus" value="#[500]" doc:name="set call status"/>
+        </catch-exception-strategy>
+    </flow>
+    
+</mule>

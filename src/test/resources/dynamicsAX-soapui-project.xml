@@ -1,0 +1,3279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="dynamicsAX" resourceRoot="" soapui-version="4.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BasicHttpBinding_ItemService" type="wsdl" bindingName="{http://schemas.microsoft.com/dynamics/2008/01/services}BasicHttpBinding_ItemService" soapVersion="1_1" anonymous="optional" definition="file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/ItemWDSL.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/ItemWDSL.xml"><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/ItemWDSL.xml</con:url><con:content><![CDATA[<wsdl:definitions name="ItemService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+  <wsp:Policy wsu:Id="BasicHttpBinding_ItemService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services/Imports">
+      <xsd:import schemaLocation="itemservice_XSD0" namespace="http://schemas.microsoft.com/dynamics/2008/01/services"/>
+      <xsd:import schemaLocation="itemservice_XSD6" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+      <xsd:import schemaLocation="itemservice_XSD1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="itemservice_XSD2" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      <xsd:import schemaLocation="itemservice_XSD3"/>
+      <xsd:import schemaLocation="itemservice_XSD4" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      <xsd:import schemaLocation="itemservice_XSD5" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey"/>
+      <xsd:import schemaLocation="itemservice_XSD7" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ItemServiceFindKeysRequest">
+    <wsdl:part name="parameters" element="tns:ItemServiceFindKeysRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceFindKeysResponse">
+    <wsdl:part name="parameters" element="tns:ItemServiceFindKeysResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ItemService_findKeys_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceCreateRequest">
+    <wsdl:part name="parameters" element="tns:ItemServiceCreateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceCreateResponse">
+    <wsdl:part name="parameters" element="tns:ItemServiceCreateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ItemService_create_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceFindRequest">
+    <wsdl:part name="parameters" element="tns:ItemServiceFindRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceFindResponse">
+    <wsdl:part name="parameters" element="tns:ItemServiceFindResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ItemService_find_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q3:AifFault" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceReadRequest">
+    <wsdl:part name="parameters" element="tns:ItemServiceReadRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ItemServiceReadResponse">
+    <wsdl:part name="parameters" element="tns:ItemServiceReadResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ItemService_read_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="ItemService">
+    <wsdl:operation name="findKeys">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys" name="ItemServiceFindKeysRequest" message="tns:ItemServiceFindKeysRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeysResponse" name="ItemServiceFindKeysResponse" message="tns:ItemServiceFindKeysResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeysAifFaultFault" name="AifFaultFault" message="tns:ItemService_findKeys_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create" name="ItemServiceCreateRequest" message="tns:ItemServiceCreateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/createResponse" name="ItemServiceCreateResponse" message="tns:ItemServiceCreateResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/createAifFaultFault" name="AifFaultFault" message="tns:ItemService_create_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find" name="ItemServiceFindRequest" message="tns:ItemServiceFindRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findResponse" name="ItemServiceFindResponse" message="tns:ItemServiceFindResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findAifFaultFault" name="AifFaultFault" message="tns:ItemService_find_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read" name="ItemServiceReadRequest" message="tns:ItemServiceReadRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/readResponse" name="ItemServiceReadResponse" message="tns:ItemServiceReadResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/readAifFaultFault" name="AifFaultFault" message="tns:ItemService_read_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ItemService" type="tns:ItemService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_ItemService_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findKeys">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys" style="document"/>
+      <wsdl:input name="ItemServiceFindKeysRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ItemServiceFindKeysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create" style="document"/>
+      <wsdl:input name="ItemServiceCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ItemServiceCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find" style="document"/>
+      <wsdl:input name="ItemServiceFindRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ItemServiceFindResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read" style="document"/>
+      <wsdl:input name="ItemServiceReadRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ItemServiceReadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ItemService">
+    <wsdl:port name="BasicHttpBinding_ItemService" binding="tns:BasicHttpBinding_ItemService">
+      <soap:address location="http://vmsclapmdsrq01w.devqa.local/MicrosoftDynamicsAXAif50/itemservice.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services">
+  <xs:import schemaLocation="itemservice_XSD2" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:import schemaLocation="itemservice_XSD4" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:import schemaLocation="itemservice_XSD7" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+  <xs:element name="ItemServiceFindKeysRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q1:QueryCriteria" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceFindKeysResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q2:EntityKeyList" xmlns:q2="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceCreateRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q3:Item" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceCreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q4:EntityKeyList" xmlns:q4="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceFindRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q5:QueryCriteria" xmlns:q5="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceFindResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q6:Item" xmlns:q6="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceReadRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q7:EntityKeyList" xmlns:q7="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemServiceReadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q8:Item" xmlns:q8="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD2</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
+  <xsd:element name="QueryCriteria" type="QueryCriteria"/>
+  <xsd:complexType name="QueryCriteria">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="CriteriaElement" type="CriteriaElement"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CriteriaElement">
+    <xsd:sequence>
+      <xsd:element name="DataSourceName" type="xsd:string"/>
+      <xsd:element name="FieldName" type="xsd:string"/>
+      <xsd:element name="Operator" type="Operator"/>
+      <xsd:element name="Value1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Value2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="Operator">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Equal"/>
+      <xsd:enumeration value="NotEqual"/>
+      <xsd:enumeration value="Greater"/>
+      <xsd:enumeration value="GreaterOrEqual"/>
+      <xsd:enumeration value="Less"/>
+      <xsd:enumeration value="LessOrEqual"/>
+      <xsd:enumeration value="Range"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD4</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ek="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey" xmlns="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList">
+  <xsd:import schemaLocation="itemservice_XSD5" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey"/>
+  <xsd:element name="EntityKeyList" type="EntityKeyList"/>
+  <xsd:complexType name="EntityKeyList">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="ek:EntityKey"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD5</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+  <xsd:element name="EntityKey" type="EntityKey"/>
+  <xsd:complexType name="EntityKey">
+    <xsd:sequence>
+      <xsd:element name="KeyData" type="KeyData"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="KeyData">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="KeyField" type="KeyField"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="KeyField">
+    <xsd:sequence>
+      <xsd:element name="Field" type="xsd:string"/>
+      <xsd:element name="Value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD7</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Item" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/dynamics/2008/01/documents/Item">
+  <xs:element name="Item" type="AxdItem"/>
+  <xs:complexType name="AxdItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocPurpose" nillable="true" type="AxdEnum_XMLDocPurpose"/>
+      <xs:element minOccurs="0" name="SenderId" nillable="true" type="AxdExtType_dataAreaId"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventTable" type="AxdEntity_InventTable"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AxdEnum_XMLDocPurpose">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Product:Product</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Original"/>
+      <xs:enumeration value="Duplicate"/>
+      <xs:enumeration value="Proforma"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_dataAreaId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Company:ID for an area of data</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_AxdEntityAction">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">AxdEntityAction:AxdEntityAction</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="create"/>
+      <xs:enumeration value="update"/>
+      <xs:enumeration value="replace"/>
+      <xs:enumeration value="delete"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_DocumentHash" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ABCContributionMargin" nillable="true" type="AxdEnum_ABC"/>
+      <xs:element minOccurs="0" name="ABCRevenue" nillable="true" type="AxdEnum_ABC"/>
+      <xs:element minOccurs="0" name="ABCTieUp" nillable="true" type="AxdEnum_ABC"/>
+      <xs:element minOccurs="0" name="ABCValue" nillable="true" type="AxdEnum_ABC"/>
+      <xs:element minOccurs="0" name="AltItemId" nillable="true" type="AxdExtType_ItemIdAlternative"/>
+      <xs:element minOccurs="0" name="AutoReportFinished" nillable="true" type="AxdExtType_ItemAutoReportFinished"/>
+      <xs:element minOccurs="0" name="BatchNumGroupId" nillable="true" type="AxdExtType_InventNumGroupId"/>
+      <xs:element minOccurs="0" name="bhnCompany" nillable="true" type="AxdExtType_bhnCustCompanyCode"/>
+      <xs:element minOccurs="0" name="bhnDivision" nillable="true" type="AxdExtType_bhnCustDivisionCode"/>
+      <xs:element minOccurs="0" name="bhnSubGroup" nillable="true" type="AxdExtType_bhnUPCSubGroup"/>
+      <xs:element minOccurs="0" name="BOMCalcGroupId" nillable="true" type="AxdExtType_BOMCalcGroupId"/>
+      <xs:element minOccurs="0" name="BOMLevel" nillable="true" type="AxdExtType_ItemBOMLevel"/>
+      <xs:element minOccurs="0" name="BOMManualReceipt" nillable="true" type="AxdExtType_ItemBOMManualReceipt"/>
+      <xs:element minOccurs="0" name="BOMUnitId" nillable="true" type="AxdExtType_BOMUnitId"/>
+      <xs:element minOccurs="0" name="CommissionGroupId" nillable="true" type="AxdExtType_CommissItemGroup"/>
+      <xs:element minOccurs="0" name="CostGroupId" nillable="true" type="AxdExtType_CostGroupIdDirectMaterial"/>
+      <xs:element minOccurs="0" name="CostModel" nillable="true" type="AxdExtType_ItemCostModel"/>
+      <xs:element minOccurs="0" name="Density" nillable="true" type="AxdExtType_BOMMeasureDensity"/>
+      <xs:element minOccurs="0" name="Depth" nillable="true" type="AxdExtType_BOMMeasureDepth"/>
+      <xs:element minOccurs="0" name="Dimension" nillable="true" type="AxdArray_AxdExtType_Dimension"/>
+      <xs:element minOccurs="1" name="DimGroupId" type="AxdExtType_InventDimGroupId"/>
+      <xs:element minOccurs="0" name="EPCManager" nillable="true" type="AxdExtType_EPCManager"/>
+      <xs:element minOccurs="0" name="grossDepth" nillable="true" type="AxdExtType_InventDepth"/>
+      <xs:element minOccurs="0" name="grossHeight" nillable="true" type="AxdExtType_InventHeight"/>
+      <xs:element minOccurs="0" name="grossWidth" nillable="true" type="AxdExtType_InventWidth"/>
+      <xs:element minOccurs="0" name="Height" nillable="true" type="AxdExtType_BOMMeasureHeight"/>
+      <xs:element minOccurs="0" name="Intracode" nillable="true" type="AxdExtType_IntrastatItemCodeId"/>
+      <xs:element minOccurs="0" name="IntraUnit" nillable="true" type="AxdExtType_IntrastatConvert"/>
+      <xs:element minOccurs="0" name="ItemBuyerGroupId" nillable="true" type="AxdExtType_ItemBuyerGroupId"/>
+      <xs:element minOccurs="0" name="ItemDimCombinationAutoCreate" nillable="true" type="AxdExtType_ItemDimCombinationAutoCreate"/>
+      <xs:element minOccurs="0" name="ItemDimCostPrice" nillable="true" type="AxdExtType_ItemDimCostPrice"/>
+      <xs:element minOccurs="1" name="ItemGroupId" type="AxdExtType_ItemGroupId"/>
+      <xs:element minOccurs="0" name="ItemId" nillable="true" type="AxdExtType_ItemId"/>
+      <xs:element minOccurs="0" name="ItemIdCompany" nillable="true" type="AxdExtType_ItemIdCompany"/>
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="AxdExtType_ItemName"/>
+      <xs:element minOccurs="0" name="ItemPriceToleranceGroupId" nillable="true" type="AxdExtType_ItemPriceToleranceGroupId"/>
+      <xs:element minOccurs="0" name="ItemType" nillable="true" type="AxdEnum_ItemType"/>
+      <xs:element minOccurs="0" name="jsSellEndDate" nillable="true" type="AxdExtType_TransDate"/>
+      <xs:element minOccurs="0" name="jsSellStartDate" nillable="true" type="AxdExtType_TransDate"/>
+      <xs:element minOccurs="1" name="ModelGroupId" type="AxdExtType_InventModelGroupId"/>
+      <xs:element minOccurs="0" name="NameAlias" nillable="true" type="AxdExtType_ItemNameAlias"/>
+      <xs:element minOccurs="0" name="NetWeight" nillable="true" type="AxdExtType_ItemNetWeight"/>
+      <xs:element minOccurs="0" name="OrigCountryRegionId" nillable="true" type="AxdExtType_ItemOrigCountryRegionId"/>
+      <xs:element minOccurs="0" name="OrigStateId" nillable="true" type="AxdExtType_ItemOrigStateId"/>
+      <xs:element minOccurs="0" name="PackagingGroupId" nillable="true" type="AxdExtType_ItemPackagingGroupId"/>
+      <xs:element minOccurs="0" name="PBAAutoStart" nillable="true" type="AxdExtType_PBAAutostart"/>
+      <xs:element minOccurs="0" name="PBAHideApproval" nillable="true" type="AxdExtType_PBAHideApproval"/>
+      <xs:element minOccurs="0" name="PBAHideDialog" nillable="true" type="AxdExtType_PBAHideDialog"/>
+      <xs:element minOccurs="0" name="PBAInventItemGroupId" nillable="true" type="AxdExtType_PBAInventItemGroupId"/>
+      <xs:element minOccurs="0" name="PBAItemAutoGenerated" nillable="true" type="AxdExtType_PBAItemAutoGenerated"/>
+      <xs:element minOccurs="0" name="PBAItemConfigurable" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="PBAMandatoryConfig" nillable="true" type="AxdExtType_PBAMandatoryConfig"/>
+      <xs:element minOccurs="0" name="Phantom" nillable="true" type="AxdExtType_ItemPhantom"/>
+      <xs:element minOccurs="0" name="PrimaryVendorId" nillable="true" type="AxdExtType_ItemPrimaryVendId"/>
+      <xs:element minOccurs="0" name="ProdFlushingPrincip" nillable="true" type="AxdEnum_ProdFlushingPrincipItem"/>
+      <xs:element minOccurs="0" name="ProdGroupId" nillable="true" type="AxdExtType_ItemProdGroupId"/>
+      <xs:element minOccurs="0" name="ProdPoolId" nillable="true" type="AxdExtType_ItemProdPoolId"/>
+      <xs:element minOccurs="0" name="projCategoryId" nillable="true" type="AxdExtType_ProjCategoryId"/>
+      <xs:element minOccurs="0" name="PurchModel" nillable="true" type="AxdExtType_ItemPurchModel"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="ReqGroupId" nillable="true" type="AxdExtType_ReqGroupId"/>
+      <xs:element minOccurs="0" name="SalesContributionRatio" nillable="true" type="AxdExtType_ItemSalesContributionRatio"/>
+      <xs:element minOccurs="0" name="SalesModel" nillable="true" type="AxdExtType_ItemSalesModel"/>
+      <xs:element minOccurs="0" name="SalesPercentMarkup" nillable="true" type="AxdExtType_ItemSalesPercentMarkup"/>
+      <xs:element minOccurs="0" name="SalesPriceModelBasic" nillable="true" type="AxdEnum_SalesPriceModelBasic"/>
+      <xs:element minOccurs="0" name="ScrapConst" nillable="true" type="AxdExtType_ScrapConst"/>
+      <xs:element minOccurs="0" name="ScrapVar" nillable="true" type="AxdExtType_ScrapVar"/>
+      <xs:element minOccurs="0" name="SerialNumGroupId" nillable="true" type="AxdExtType_InventNumGroupId"/>
+      <xs:element minOccurs="0" name="sortCode" nillable="true" type="AxdExtType_WMSSortCode"/>
+      <xs:element minOccurs="0" name="StatisticsFactor" nillable="true" type="AxdExtType_IntrastatMarkupPct"/>
+      <xs:element minOccurs="0" name="StopExplode" nillable="true" type="AxdExtType_ItemStopExplode"/>
+      <xs:element minOccurs="0" name="TaraWeight" nillable="true" type="AxdExtType_ItemTaraWeight"/>
+      <xs:element minOccurs="0" name="TaxPackagingQty" nillable="true" type="AxdExtType_TaxPackagingQty"/>
+      <xs:element minOccurs="0" name="UnitVolume" nillable="true" type="AxdExtType_ItemVolume"/>
+      <xs:element minOccurs="0" name="UseAltItemId" nillable="true" type="AxdExtType_ItemUseAlternative"/>
+      <xs:element minOccurs="0" name="Width" nillable="true" type="AxdExtType_BOMMeasureWidth"/>
+      <xs:element minOccurs="0" name="WMSArrivalHandlingTime" nillable="true" type="AxdExtType_WMSArrivalHandlingTime"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Sales" type="AxdEntity_Sales"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Purch" type="AxdEntity_Purch"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Invent" type="AxdEntity_Invent"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventItemLocation" type="AxdEntity_InventItemLocation"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventTxt" type="AxdEntity_InventTxt"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventTableDocuRef" type="AxdEntity_InventTableDocuRef"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventItemSalesSetup" type="AxdEntity_InventItemSalesSetup"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventItemPurchSetup" type="AxdEntity_InventItemPurchSetup"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventItemInventSetup" type="AxdEntity_InventItemInventSetup"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdEnum_ABC">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Category:Category</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="A"/>
+      <xs:enumeration value="B"/>
+      <xs:enumeration value="C"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemIdAlternative">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Alternative item number:Alternative inventory number is used for order entry.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemAutoReportFinished">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Auto-report as finished:Activate automatic report as finished in connection with transactions for the item.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventNumGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Number group:Identification of number group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_bhnCustCompanyCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Company code:The company code related to a customer or product.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_bhnCustDivisionCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Division code:The division code related to a customer or product.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_bhnUPCSubGroup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Substitution group:UPC substitution group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BOMCalcGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Calculation group:Identification of the calculation group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemBOMLevel">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Level:Calculated BOM level on latest requirement calculation</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Integer">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="-2147483648"/>
+      <xs:maxInclusive value="2147483647"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemBOMManualReceipt">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Arrival:Manually enter material profit for this item for a production?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BOMUnitId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Unit:BOM consumption unit</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_CommissItemGroup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Commission item group:Identification of commission item group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_CostGroupIdDirectMaterial">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Cost group:Identification of the cost group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemCostModel">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Latest cost price:Update the item automatically with latest cost price?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BOMMeasureDensity">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Density:Measurement conversion factor for the density dimension.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Decimal">
+    <xs:restriction base="xs:decimal"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BOMMeasureDepth">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Depth:Measurement conversion factor for the depth dimension.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdArray_AxdExtType_Dimension">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Channel:Channel number.
+Department:Department number.
+Product:Product number.
+Partner activity code:Partner activity code number.
+Region code:Region code number.
+Project ID:Project ID number.
+Affiliate:Affiliate number.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="7" maxOccurs="7" name="element" type="AxdExtType_Dimension"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_Dimension">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US"/>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventDimGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Dimension group:Identification of inventory dimension group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_EPCManager">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">EPC manager:The EPC manager of the item.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventDepth">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Depth:Standard depth</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventHeight">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Height:Standard height</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventWidth">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Width:Standard width</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BOMMeasureHeight">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Height:Measurement conversion factor for the height dimension.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_IntrastatItemCodeId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Commodity:Item commodity code</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_IntrastatConvert">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Additional units:Quantity of additional units per inventory unit, used for Intrastat.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemBuyerGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Buyer group:Identification of the buyer group.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemDimCombinationAutoCreate">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Autocreate combinations:Autocreate all new combinations for the item, when a new item dimension is created</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemDimCostPrice">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Use combination cost price:Activate, use, and maintain cost prices per item dimension combination.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Item group:Identification of item group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Product code:Identify product code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemIdCompany">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Company item:Identify item.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemName">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Product name:Description of the item.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemPriceToleranceGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Item price tolerance group:Identification of item price tolerance group for accounts payable invoice matching</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_ItemType">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Item type:Item type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Item"/>
+      <xs:enumeration value="BOM"/>
+      <xs:enumeration value="Service"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_TransDate">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Date:Transaction date.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventModelGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Inventory model group:Identification of inventory model group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemNameAlias">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Search name:Find fast name applying to the item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemNetWeight">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Net weight:Net weight of inventory item for one inventory unit</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemOrigCountryRegionId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Country/region:Country/region of origin of the current inventory item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemOrigStateId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">State:State of origin for the current item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemPackagingGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Packing group:Identification of the packing group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PBAAutostart">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Autostart configuration:Autostart of configuration dialog when entering a modeling enabled item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PBAHideApproval">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Hide approval dialog:Hide approval dialog after acknowledgement of configuration details</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PBAHideDialog">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Hide dialog box:Hide dialog for automatic configuration based on default values</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PBAInventItemGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Product model group:Identification of the item product model group.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PBAItemAutoGenerated">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Autogenerated:Generated item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_NoYes">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PBAMandatoryConfig">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Mandatory configuration:Check item lines for complete configuration details</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemPhantom">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Phantom:Propose item as phantom item in bills of materials?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemPrimaryVendId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Vendor:Primary vendor for planned purchase order</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_ProdFlushingPrincipItem">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Flushing principle:Flushing principle</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Start"/>
+      <xs:enumeration value="Finish"/>
+      <xs:enumeration value="Manual"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemProdGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Production group:Production group proposed when creating productions for the item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemProdPoolId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Production pool:Pool proposed when creating productions for the item</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ProjCategoryId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Category:Category that is used as a default.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemPurchModel">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Latest purchase price:Update the item automatically with latest purchase price?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_recId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Record-ID:Unique ID for the record in the database</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Int64"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Int64">
+    <xs:restriction base="xs:long">
+      <xs:minInclusive value="-9223372036854775808"/>
+      <xs:maxInclusive value="9223372036854775807"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_recVersion">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Record Version:Version of the record in the database</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ReqGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Coverage group:Identification of the coverage group.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemSalesContributionRatio">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Contribution ratio:Contribution ratio to be used when calculating sales price</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemSalesModel">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Sales price model:Calculate sales price of the item by which model?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Contributionratio"/>
+      <xs:enumeration value="PercentMarkup"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemSalesPercentMarkup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Misc. charges pct.:Misc. charges percentage to be used when calculating sales price</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_SalesPriceModelBasic">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Base price:Base price</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PurchPrice"/>
+      <xs:enumeration value="CostPrice"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ScrapConst">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Constant scrap:Constant scrap in BOM unit</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ScrapVar">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Variable scrap:Variable scrap percentage (must be specified in percent)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_WMSSortCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Sort code:Sort order of locations.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_IntrastatMarkupPct">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Misc. charges pct.:Figure specified in percentage.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemStopExplode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Stop explosion:Stop explosion at this item?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemTaraWeight">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Tare weight:The tare weight of the item for an inventory unit</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_TaxPackagingQty">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Packing quantity:Quantity of which packing duty is to be calculated. The quantity is stated per inventory unit.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemVolume">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Volume:Volume in cubic meters of an inventory unit</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemUseAlternative">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Use alternative:When should alternative item number be used?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Never"/>
+      <xs:enumeration value="InventWhen0"/>
+      <xs:enumeration value="Always"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BOMMeasureWidth">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Width:Factor for the measurement dimension width.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_WMSArrivalHandlingTime">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Arrival handling time:Time used to arrival update per inventory standard order quantity</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:time">
+      <xs:pattern value="^(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}(\.[0-9]+)?([\+\-](0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]))?$"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_Sales">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllocateMarkup" nillable="true" type="AxdExtType_PriceAllocateMarkup"/>
+      <xs:element minOccurs="0" name="EndDisc" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="InterCompanyBlocked" nillable="true" type="AxdExtType_InterCompanyBlocked"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdExtType_ItemId"/>
+      <xs:element minOccurs="0" name="LineDisc" nillable="true" type="AxdExtType_InventLineDiscCode"/>
+      <xs:element minOccurs="0" name="Markup" nillable="true" type="AxdExtType_InventPriceMarkup"/>
+      <xs:element minOccurs="0" name="MarkupGroupId" nillable="true" type="AxdExtType_InventMarkupGroupId"/>
+      <xs:element minOccurs="0" name="ModuleType" nillable="true" type="AxdEnum_ModuleInventPurchSales"/>
+      <xs:element minOccurs="0" name="MultiLineDisc" nillable="true" type="AxdExtType_InventMultiLineDiscCode"/>
+      <xs:element minOccurs="0" name="OverDeliveryPct" nillable="true" type="AxdExtType_OverDeliveryPct"/>
+      <xs:element minOccurs="0" name="PcsPrice" nillable="true" type="AxdExtType_Price"/>
+      <xs:element minOccurs="0" name="Price" nillable="true" type="AxdExtType_Price"/>
+      <xs:element minOccurs="0" name="PriceDate" nillable="true" type="AxdExtType_PriceDate"/>
+      <xs:element minOccurs="0" name="PriceQty" nillable="true" type="AxdExtType_PriceQty"/>
+      <xs:element minOccurs="0" name="PriceUnit" nillable="true" type="AxdExtType_PriceUnit"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="SuppItemGroupId" nillable="true" type="AxdExtType_InventSuppItemGroupId"/>
+      <xs:element minOccurs="0" name="TaxItemGroupId" nillable="true" type="AxdExtType_TaxItemGroup"/>
+      <xs:element minOccurs="0" name="UnderDeliveryPct" nillable="true" type="AxdExtType_UnderDeliveryPct"/>
+      <xs:element minOccurs="0" name="UnitId" nillable="true" type="AxdExtType_UnitID"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_PriceAllocateMarkup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Incl. in unit price:Include the price misc. charges in the unit price of the various units specified in the Price quantity field?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InterCompanyBlocked">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Intercompany stopped:Intercompany is stopped.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventLineDiscCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Line discount:Unique identification of line discount</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventPriceMarkup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Price misc. charges:Fixed misc. charges on price, applied once for each invoice.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventMarkupGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Misc. charges group:Identification of misc. charges group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_ModuleInventPurchSales">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Module type:Module type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Invent"/>
+      <xs:enumeration value="Purch"/>
+      <xs:enumeration value="Sales"/>
+      <xs:enumeration value="DEL_SmmQuotation"/>
+      <xs:enumeration value="DEL_Invent2"/>
+      <xs:enumeration value="DEL_Invent3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventMultiLineDiscCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Multiline disc. group:Multiline discount per price unit</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_OverDeliveryPct">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Overdelivery:Accepted overdelivery in percentage</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Price">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Price:Run-dependent price per unit.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PriceDate">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Date of price:Date attached to the price</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PriceQty">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Price quantity:Quantity that price and misc. charges are applicable to.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PriceUnit">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Price unit:Number of units the price is specified in.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventSuppItemGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Supplementary item group:Specify the supplementary item group of the item in the module</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_TaxItemGroup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Item sales tax group:Group of sales tax codes that can be calculated for an item.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_UnderDeliveryPct">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Underdelivery:Accepted underdelivery in percentage</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_UnitID">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Unit:Unit identification.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_Purch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllocateMarkup" nillable="true" type="AxdExtType_PriceAllocateMarkup"/>
+      <xs:element minOccurs="0" name="EndDisc" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="InterCompanyBlocked" nillable="true" type="AxdExtType_InterCompanyBlocked"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdExtType_ItemId"/>
+      <xs:element minOccurs="0" name="LineDisc" nillable="true" type="AxdExtType_InventLineDiscCode"/>
+      <xs:element minOccurs="0" name="Markup" nillable="true" type="AxdExtType_InventPriceMarkup"/>
+      <xs:element minOccurs="0" name="MarkupGroupId" nillable="true" type="AxdExtType_InventMarkupGroupId"/>
+      <xs:element minOccurs="0" name="ModuleType" nillable="true" type="AxdEnum_ModuleInventPurchSales"/>
+      <xs:element minOccurs="0" name="MultiLineDisc" nillable="true" type="AxdExtType_InventMultiLineDiscCode"/>
+      <xs:element minOccurs="0" name="OverDeliveryPct" nillable="true" type="AxdExtType_OverDeliveryPct"/>
+      <xs:element minOccurs="0" name="PcsPrice" nillable="true" type="AxdExtType_Price"/>
+      <xs:element minOccurs="0" name="Price" nillable="true" type="AxdExtType_Price"/>
+      <xs:element minOccurs="0" name="PriceDate" nillable="true" type="AxdExtType_PriceDate"/>
+      <xs:element minOccurs="0" name="PriceQty" nillable="true" type="AxdExtType_PriceQty"/>
+      <xs:element minOccurs="0" name="PriceUnit" nillable="true" type="AxdExtType_PriceUnit"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="SuppItemGroupId" nillable="true" type="AxdExtType_InventSuppItemGroupId"/>
+      <xs:element minOccurs="0" name="TaxItemGroupId" nillable="true" type="AxdExtType_TaxItemGroup"/>
+      <xs:element minOccurs="0" name="UnderDeliveryPct" nillable="true" type="AxdExtType_UnderDeliveryPct"/>
+      <xs:element minOccurs="0" name="UnitId" nillable="true" type="AxdExtType_UnitID"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_Invent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllocateMarkup" nillable="true" type="AxdExtType_PriceAllocateMarkup"/>
+      <xs:element minOccurs="0" name="EndDisc" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="InterCompanyBlocked" nillable="true" type="AxdExtType_InterCompanyBlocked"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdExtType_ItemId"/>
+      <xs:element minOccurs="0" name="LineDisc" nillable="true" type="AxdExtType_InventLineDiscCode"/>
+      <xs:element minOccurs="0" name="Markup" nillable="true" type="AxdExtType_InventPriceMarkup"/>
+      <xs:element minOccurs="0" name="MarkupGroupId" nillable="true" type="AxdExtType_InventMarkupGroupId"/>
+      <xs:element minOccurs="0" name="ModuleType" nillable="true" type="AxdEnum_ModuleInventPurchSales"/>
+      <xs:element minOccurs="0" name="MultiLineDisc" nillable="true" type="AxdExtType_InventMultiLineDiscCode"/>
+      <xs:element minOccurs="0" name="OverDeliveryPct" nillable="true" type="AxdExtType_OverDeliveryPct"/>
+      <xs:element minOccurs="0" name="PcsPrice" nillable="true" type="AxdExtType_Price"/>
+      <xs:element minOccurs="0" name="Price" nillable="true" type="AxdExtType_Price"/>
+      <xs:element minOccurs="0" name="PriceDate" nillable="true" type="AxdExtType_PriceDate"/>
+      <xs:element minOccurs="0" name="PriceQty" nillable="true" type="AxdExtType_PriceQty"/>
+      <xs:element minOccurs="0" name="PriceUnit" nillable="true" type="AxdExtType_PriceUnit"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="SuppItemGroupId" nillable="true" type="AxdExtType_InventSuppItemGroupId"/>
+      <xs:element minOccurs="0" name="TaxItemGroupId" nillable="true" type="AxdExtType_TaxItemGroup"/>
+      <xs:element minOccurs="0" name="UnderDeliveryPct" nillable="true" type="AxdExtType_UnderDeliveryPct"/>
+      <xs:element minOccurs="0" name="UnitId" nillable="true" type="AxdExtType_UnitID"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_InventItemLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CountGroupId" nillable="true" type="AxdExtType_CountGroupId"/>
+      <xs:element minOccurs="0" name="CountingJournalId" nillable="true" type="AxdExtType_InventJournalId_Counting"/>
+      <xs:element minOccurs="0" name="CountingStarted" nillable="true" type="AxdExtType_InventCountingStarted"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdExtType_ItemId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="WMSLocationIdDefaultIssue" nillable="true" type="AxdExtType_WMSLocationIdDefaultIssue"/>
+      <xs:element minOccurs="0" name="WMSLocationIdDefaultReceipt" nillable="true" type="AxdExtType_WMSLocationIdDefaultReceipt"/>
+      <xs:element minOccurs="0" name="wMSPickingLocation" nillable="true" type="AxdExtType_WMSPickingLocation"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventDim" type="AxdEntity_InventDim"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_CountGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Counting group:Identification of counting group</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventJournalId_Counting">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Counting journal:Journal used for counting</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventCountingStarted">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Counting started:Has counting been started for the on-hand inventory?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventDimId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Dimension No.:Identification of dimensions for the item.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_WMSLocationIdDefaultIssue">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Default issue location:Location proposed for inventory issues of sales orders, production lines, etc. when nothing else is specified</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_WMSLocationIdDefaultReceipt">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Default receipt location:Location proposed for inventory receipts of purchase orders, productions, etc. when nothing else is specified</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_WMSPickingLocation">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Picking location:Location from where the item is handled (picked)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventDim">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_InventBatchId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">IID:IID dimension</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventLocationId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Warehouse:Identify the warehouse.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventSerialId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Serial number:Serial number dimension.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventSiteId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Site:Identify the site</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_WMSLocationId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Location:Location in a warehouse.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventTxt">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="ItemId" nillable="true" type="AxdUnion_AxdExtType_ItemId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="1" name="LanguageId" type="AxdExtType_LanguageId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="Txt" nillable="true" type="AxdExtType_ItemFreeTxt"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdType_ExtCodeValue">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Value:Actual value of the related record according to the selected external code type.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_ItemId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_ItemId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_LanguageId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Language:Select the language for the current text.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemFreeTxt">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Text:Standard item description.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventTableDocuRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActualCompanyId" nillable="true" type="AxdExtType_selectableDataArea"/>
+      <xs:element minOccurs="0" name="AuthorId" nillable="true" type="AxdExtType_smmDocuAuthorId"/>
+      <xs:element minOccurs="0" name="ContactPersonId" nillable="true" type="AxdExtType_ContactPersonId"/>
+      <xs:element minOccurs="0" name="EncyclopediaItemId" nillable="true" type="AxdExtType_smmEncyclopediaItemId"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="AxdExtType_Description"/>
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="AxdExtType_Notes"/>
+      <xs:element minOccurs="0" name="PartyId" nillable="true" type="AxdExtType_DirPartyId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="RefCompanyId" nillable="true" type="AxdExtType_selectableDataArea"/>
+      <xs:element minOccurs="0" name="RefRecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RefTableId" nillable="true" type="AxdExtType_tableId"/>
+      <xs:element minOccurs="0" name="Restriction" nillable="true" type="AxdEnum_DocuRestriction"/>
+      <xs:element minOccurs="0" name="smmTable" nillable="true" type="AxdEnum_boolean"/>
+      <xs:element minOccurs="0" name="TypeId" nillable="true" type="AxdExtType_DocuTypeId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_selectableDataArea">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Company:ID for the company you can select</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmDocuAuthorId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Author:Defines the author of the document.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ContactPersonId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Contact ID:Identification of the contact.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmEncyclopediaItemId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Encyclopedia item ID:Unique encyclopedia item ID</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Description">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Description:Brief description of transaction.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Notes">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Note:Note it field.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DirPartyId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Address book ID:Address book identification</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_tableId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Table:ID for the table</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_DocuRestriction">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Restriction:Restriction</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Internal"/>
+      <xs:enumeration value="External"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_boolean">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="false"/>
+      <xs:enumeration value="true"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DocuTypeId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Type:Identification of document type.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventItemSalesSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ATPInclPlannedOrders" nillable="true" type="AxdExtType_SalesATPInclPlannedOrders"/>
+      <xs:element minOccurs="0" name="ATPTimeFence" nillable="true" type="AxdExtType_SalesATPTimeFence"/>
+      <xs:element minOccurs="0" name="DeliveryDateControlType" nillable="true" type="AxdEnum_SalesDeliveryDateControlType"/>
+      <xs:element minOccurs="0" name="HighestQty" nillable="true" type="AxdExtType_QtyHighest"/>
+      <xs:element minOccurs="0" name="InventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventDimIdDefault" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdUnion_AxdExtType_ItemId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="LeadTime" nillable="true" type="AxdExtType_LeadTimeSalesDefault"/>
+      <xs:element minOccurs="0" name="LowestQty" nillable="true" type="AxdExtType_QtyLowest"/>
+      <xs:element minOccurs="0" name="MandatoryInventLocation" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="MandatoryInventSite" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="MultipleQty" nillable="true" type="AxdExtType_QtyMultiples"/>
+      <xs:element minOccurs="0" name="Override" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="StandardQty" nillable="true" type="AxdExtType_QtyStandard"/>
+      <xs:element minOccurs="0" name="Stopped" nillable="true" type="AxdExtType_ItemStopped"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventDimSalesSetup" type="AxdEntity_InventDimSalesSetup"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DefaultInventDimSalesSetup" type="AxdEntity_DefaultInventDimSalesSetup"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_SalesATPInclPlannedOrders">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">ATP incl. planned orders:If selected, planned orders are included in the ATP calculation. This applies only if the delivery date control is set to ATP.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="false"/>
+      <xs:enumeration value="true"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_SalesATPTimeFence">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">ATP time fence:Time period in days, going forward from today, for calculating ATP. This applies only if the delivery date control is set to ATP.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_SalesDeliveryDateControlType">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Delivery date control:Delivery date control</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="SalesLeadTime"/>
+      <xs:enumeration value="ATP"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_QtyHighest">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Max. order quantity:Maximum quantity applying to item transactions</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_LeadTimeSalesDefault">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Sales lead time:Default lead time or lead time in number of days</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_QtyLowest">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Min. order quantity:Minimum quantity applying to item transactions</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_NoYesId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_QtyMultiples">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Multiple:Multiples quantity during packing or production</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_QtyStandard">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Standard order quantity:Standard order quantity applying to item transactions</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemStopped">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Stopped:Is the item on hold for transactions?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventDimSalesSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_DefaultInventDimSalesSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_InventItemPurchSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CalendarDays" nillable="true" type="AxdExtType_CalendarDays"/>
+      <xs:element minOccurs="0" name="HighestQty" nillable="true" type="AxdExtType_QtyHighest"/>
+      <xs:element minOccurs="0" name="InventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventDimIdDefault" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdUnion_AxdExtType_ItemId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="LeadTime" nillable="true" type="AxdExtType_LeadTimePurchDefault"/>
+      <xs:element minOccurs="0" name="LowestQty" nillable="true" type="AxdExtType_QtyLowest"/>
+      <xs:element minOccurs="0" name="MandatoryInventLocation" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="MandatoryInventSite" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="MultipleQty" nillable="true" type="AxdExtType_QtyMultiples"/>
+      <xs:element minOccurs="0" name="Override" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="StandardQty" nillable="true" type="AxdExtType_QtyStandard"/>
+      <xs:element minOccurs="0" name="Stopped" nillable="true" type="AxdExtType_ItemStopped"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventDimPurchSetup" type="AxdEntity_InventDimPurchSetup"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DefaultInventDimPurchSetup" type="AxdEntity_DefaultInventDimPurchSetup"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_CalendarDays">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Working days:Are days specified in the working days calendar?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_LeadTimePurchDefault">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Purchase lead time:Default lead time or lead time in number of days</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventDimPurchSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_DefaultInventDimPurchSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_InventItemInventSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ATPInclPlannedOrders" nillable="true" type="AxdExtType_SalesATPInclPlannedOrders"/>
+      <xs:element minOccurs="0" name="ATPTimeFence" nillable="true" type="AxdExtType_SalesATPTimeFence"/>
+      <xs:element minOccurs="0" name="CalendarDays" nillable="true" type="AxdExtType_CalendarDays"/>
+      <xs:element minOccurs="0" name="DeliveryDateControlType" nillable="true" type="AxdEnum_SalesDeliveryDateControlType"/>
+      <xs:element minOccurs="0" name="HighestQty" nillable="true" type="AxdExtType_QtyHighest"/>
+      <xs:element minOccurs="0" name="InventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventDimIdDefault" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="1" name="ItemId" type="AxdUnion_AxdExtType_ItemId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="LeadTime" nillable="true" type="AxdExtType_LeadTimeInventDefault"/>
+      <xs:element minOccurs="0" name="LowestQty" nillable="true" type="AxdExtType_QtyLowest"/>
+      <xs:element minOccurs="0" name="MandatoryInventLocation" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="MandatoryInventSite" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="MultipleQty" nillable="true" type="AxdExtType_QtyMultiples"/>
+      <xs:element minOccurs="0" name="Override" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="StandardQty" nillable="true" type="AxdExtType_QtyStandard"/>
+      <xs:element minOccurs="0" name="Stopped" nillable="true" type="AxdExtType_ItemStopped"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventDimInventSetup" type="AxdEntity_InventDimInventSetup"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DefaultInventDimInventSetup" type="AxdEntity_DefaultInventDimInventSetup"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_LeadTimeInventDefault">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Inventory lead time:Default lead time or lead time in number of days</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_InventDimInventSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:complexType name="AxdEntity_DefaultInventDimInventSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventBatchId" nillable="true" type="AxdExtType_InventBatchId"/>
+      <xs:element minOccurs="0" name="inventDimId" nillable="true" type="AxdExtType_InventDimId"/>
+      <xs:element minOccurs="0" name="InventLocationId" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="inventSerialId" nillable="true" type="AxdExtType_InventSerialId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="wMSLocationId" nillable="true" type="AxdExtType_WMSLocationId"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD6</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault">
+  <xs:complexType name="AifFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomDetailXml" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="FaultMessageListArray" nillable="true" type="tns:ArrayOfFaultMessageList"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AifFault" nillable="true" type="tns:AifFault"/>
+  <xs:complexType name="ArrayOfFaultMessageList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FaultMessageList" nillable="true" type="tns:FaultMessageList"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFaultMessageList" nillable="true" type="tns:ArrayOfFaultMessageList"/>
+  <xs:complexType name="FaultMessageList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Document" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="DocumentOperation" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="FaultMessageArray" nillable="true" type="tns:ArrayOfFaultMessage"/>
+      <xs:element minOccurs="0" name="Field" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Service" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ServiceOperation" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ServiceOperationParameter" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="XPath" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="XmlLine" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="XmlPosition" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FaultMessageList" nillable="true" type="tns:FaultMessageList"/>
+  <xs:complexType name="ArrayOfFaultMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FaultMessage" nillable="true" type="tns:FaultMessage"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFaultMessage" nillable="true" type="tns:ArrayOfFaultMessage"/>
+  <xs:complexType name="FaultMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FaultMessage" nillable="true" type="tns:FaultMessage"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/matiasjuan/Downloads/devel/temp/blackhawk/MuleSoftXSD/itemservice_XSD3</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="itemservice_XSD2" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:import schemaLocation="itemservice_XSD4" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:import schemaLocation="itemservice_XSD7" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+  <xs:element name="QueryCriteria" type="q1:QueryCriteria" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:element name="EntityKeyList" type="q2:EntityKeyList" xmlns:q2="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:element name="AxdItem" type="q3:AxdItem" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Item"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://vmsclapmdsrq01w.devqa.local/MicrosoftDynamicsAXAif50/itemservice.svc</con:endpoint><con:endpoint>http://Matiass-MacBook-Pro-3.local:8088/MicrosoftDynamicsAXAif50/itemservice.svc</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create" name="create" bindingOperationName="create" type="Request-Response" outputName="ItemServiceCreateResponse" inputName="ItemServiceCreateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://Matiass-MacBook-Pro-3.local:8088/MicrosoftDynamicsAXAif50/itemservice.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:item="http://schemas.microsoft.com/dynamics/2008/01/documents/Item">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceCreateRequest>
+         <item:Item>
+            <!--Zero or more repetitions:-->
+            <item:InventTable class="entity" action="?">
+            	<item:ItemId>xxx-itemId</item:ItemId>
+            	
+               <item:DimGroupId>U_dimension_group</item:DimGroupId>
+               
+               <item:ItemGroupId>u_item_group</item:ItemGroupId>
+               
+               <item:ItemName>U_product_Name</item:ItemName>
+               
+               <item:ModelGroupId>U_inventory_model_group</item:ModelGroupId>
+            </item:InventTable>
+         </item:Item>
+      </ser:ItemServiceCreateRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find" name="find" bindingOperationName="find" type="Request-Response" outputName="ItemServiceFindResponse" inputName="ItemServiceFindRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://vmsclapmdsrq01w.devqa.local/MicrosoftDynamicsAXAif50/itemservice.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:quer="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceFindRequest>
+         <!--Optional:-->
+         <quer:QueryCriteria>
+            <quer:CriteriaElement>
+               <quer:DataSourceName>?</quer:DataSourceName>
+               <quer:FieldName>?</quer:FieldName>
+               <quer:Operator>?</quer:Operator>
+               <quer:Value1>?</quer:Value1>
+               <!--Optional:-->
+               <quer:Value2>?</quer:Value2>
+            </quer:CriteriaElement>
+         </quer:QueryCriteria>
+      </ser:ItemServiceFindRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find"/></con:call></con:operation><con:operation isOneWay="false" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys" name="findKeys" bindingOperationName="findKeys" type="Request-Response" outputName="ItemServiceFindKeysResponse" inputName="ItemServiceFindKeysRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://vmsclapmdsrq01w.devqa.local/MicrosoftDynamicsAXAif50/itemservice.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:quer="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceFindKeysRequest>
+         <!--Optional:-->
+         <quer:QueryCriteria>
+            <quer:CriteriaElement>
+               <quer:DataSourceName>?</quer:DataSourceName>
+               <quer:FieldName>?</quer:FieldName>
+               <quer:Operator>?</quer:Operator>
+               <quer:Value1>?</quer:Value1>
+               <!--Optional:-->
+               <quer:Value2>?</quer:Value2>
+            </quer:CriteriaElement>
+         </quer:QueryCriteria>
+      </ser:ItemServiceFindKeysRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys"/></con:call></con:operation><con:operation isOneWay="false" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read" name="read" bindingOperationName="read" type="Request-Response" outputName="ItemServiceReadResponse" inputName="ItemServiceReadRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://vmsclapmdsrq01w.devqa.local/MicrosoftDynamicsAXAif50/itemservice.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:ent="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:ent1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceReadRequest>
+         <!--Optional:-->
+         <ent:EntityKeyList>
+            <!--Zero or more repetitions:-->
+            <ent1:EntityKey>
+               <ent1:KeyData>
+                  <!--1 or more repetitions:-->
+                  <ent1:KeyField>
+                     <ent1:Field>?</ent1:Field>
+                     <ent1:Value>?</ent1:Value>
+                  </ent1:KeyField>
+               </ent1:KeyData>
+            </ent1:EntityKey>
+         </ent:EntityKeyList>
+      </ser:ItemServiceReadRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/MicrosoftDynamicsAXAif50/itemservice.svc" host="Matiass-MacBook-Pro-3.local" name="BasicHttpBinding_ItemService MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="create" interface="BasicHttpBinding_ItemService" operation="create"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:ent="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:ent1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceCreateResponse>
+         <!--Optional:-->
+         <ent:EntityKeyList>
+            <!--Zero or more repetitions:-->
+            <ent1:EntityKey>
+               <ent1:KeyData>
+                  <!--1 or more repetitions:-->
+                  <ent1:KeyField>
+                     <ent1:Field>a</ent1:Field>
+                     <ent1:Value>1</ent1:Value>
+                  </ent1:KeyField>
+                  <ent1:KeyField>
+                     <ent1:Field>b</ent1:Field>
+                     <ent1:Value>2</ent1:Value>
+                  </ent1:KeyField>
+               </ent1:KeyData>
+            </ent1:EntityKey>
+         </ent:EntityKeyList>
+      </ser:ItemServiceCreateResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create"/></con:response><con:response name="MockResponse 2" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:ent="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:ent1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceCreateResponse>
+         <!--Optional:-->
+         <ent:EntityKeyList>
+            <!--Zero or more repetitions:-->
+            <ent1:EntityKey>
+               <ent1:KeyData>
+                  <!--1 or more repetitions:-->
+                  <ent1:KeyField>
+                     <ent1:Field>c</ent1:Field>
+                     <ent1:Value>33</ent1:Value>
+                  </ent1:KeyField>
+               </ent1:KeyData>
+            </ent1:EntityKey>
+         </ent:EntityKeyList>
+      </ser:ItemServiceCreateResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="find" interface="BasicHttpBinding_ItemService" operation="find"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:item="http://schemas.microsoft.com/dynamics/2008/01/documents/Item">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceFindResponse>
+         <!--Optional:-->
+         <item:Item>
+            <!--Optional:-->
+            <item:DocPurpose>?</item:DocPurpose>
+            <!--Optional:-->
+            <item:SenderId>?</item:SenderId>
+            <!--Zero or more repetitions:-->
+            <item:InventTable class="entity" action="?">
+               <!--Optional:-->
+               <item:_DocumentHash>?</item:_DocumentHash>
+               <!--Optional:-->
+               <item:ABCContributionMargin>?</item:ABCContributionMargin>
+               <!--Optional:-->
+               <item:ABCRevenue>?</item:ABCRevenue>
+               <!--Optional:-->
+               <item:ABCTieUp>?</item:ABCTieUp>
+               <!--Optional:-->
+               <item:ABCValue>?</item:ABCValue>
+               <!--Optional:-->
+               <item:AltItemId>?</item:AltItemId>
+               <!--Optional:-->
+               <item:AutoReportFinished>?</item:AutoReportFinished>
+               <!--Optional:-->
+               <item:BatchNumGroupId>?</item:BatchNumGroupId>
+               <!--Optional:-->
+               <item:bhnCompany>?</item:bhnCompany>
+               <!--Optional:-->
+               <item:bhnDivision>?</item:bhnDivision>
+               <!--Optional:-->
+               <item:bhnSubGroup>?</item:bhnSubGroup>
+               <!--Optional:-->
+               <item:BOMCalcGroupId>?</item:BOMCalcGroupId>
+               <!--Optional:-->
+               <item:BOMLevel>?</item:BOMLevel>
+               <!--Optional:-->
+               <item:BOMManualReceipt>?</item:BOMManualReceipt>
+               <!--Optional:-->
+               <item:BOMUnitId>?</item:BOMUnitId>
+               <!--Optional:-->
+               <item:CommissionGroupId>?</item:CommissionGroupId>
+               <!--Optional:-->
+               <item:CostGroupId>?</item:CostGroupId>
+               <!--Optional:-->
+               <item:CostModel>?</item:CostModel>
+               <!--Optional:-->
+               <item:Density>?</item:Density>
+               <!--Optional:-->
+               <item:Depth>?</item:Depth>
+               <!--Optional:-->
+               <item:Dimension>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+               </item:Dimension>
+               <item:DimGroupId>?</item:DimGroupId>
+               <!--Optional:-->
+               <item:EPCManager>?</item:EPCManager>
+               <!--Optional:-->
+               <item:grossDepth>?</item:grossDepth>
+               <!--Optional:-->
+               <item:grossHeight>?</item:grossHeight>
+               <!--Optional:-->
+               <item:grossWidth>?</item:grossWidth>
+               <!--Optional:-->
+               <item:Height>?</item:Height>
+               <!--Optional:-->
+               <item:Intracode>?</item:Intracode>
+               <!--Optional:-->
+               <item:IntraUnit>?</item:IntraUnit>
+               <!--Optional:-->
+               <item:ItemBuyerGroupId>?</item:ItemBuyerGroupId>
+               <!--Optional:-->
+               <item:ItemDimCombinationAutoCreate>?</item:ItemDimCombinationAutoCreate>
+               <!--Optional:-->
+               <item:ItemDimCostPrice>?</item:ItemDimCostPrice>
+               <item:ItemGroupId>?</item:ItemGroupId>
+               <!--Optional:-->
+               <item:ItemId>?</item:ItemId>
+               <!--Optional:-->
+               <item:ItemIdCompany>?</item:ItemIdCompany>
+               <!--Optional:-->
+               <item:ItemName>?</item:ItemName>
+               <!--Optional:-->
+               <item:ItemPriceToleranceGroupId>?</item:ItemPriceToleranceGroupId>
+               <!--Optional:-->
+               <item:ItemType>?</item:ItemType>
+               <!--Optional:-->
+               <item:jsSellEndDate>?</item:jsSellEndDate>
+               <!--Optional:-->
+               <item:jsSellStartDate>?</item:jsSellStartDate>
+               <item:ModelGroupId>?</item:ModelGroupId>
+               <!--Optional:-->
+               <item:NameAlias>?</item:NameAlias>
+               <!--Optional:-->
+               <item:NetWeight>?</item:NetWeight>
+               <!--Optional:-->
+               <item:OrigCountryRegionId>?</item:OrigCountryRegionId>
+               <!--Optional:-->
+               <item:OrigStateId>?</item:OrigStateId>
+               <!--Optional:-->
+               <item:PackagingGroupId>?</item:PackagingGroupId>
+               <!--Optional:-->
+               <item:PBAAutoStart>?</item:PBAAutoStart>
+               <!--Optional:-->
+               <item:PBAHideApproval>?</item:PBAHideApproval>
+               <!--Optional:-->
+               <item:PBAHideDialog>?</item:PBAHideDialog>
+               <!--Optional:-->
+               <item:PBAInventItemGroupId>?</item:PBAInventItemGroupId>
+               <!--Optional:-->
+               <item:PBAItemAutoGenerated>?</item:PBAItemAutoGenerated>
+               <!--Optional:-->
+               <item:PBAItemConfigurable>?</item:PBAItemConfigurable>
+               <!--Optional:-->
+               <item:PBAMandatoryConfig>?</item:PBAMandatoryConfig>
+               <!--Optional:-->
+               <item:Phantom>?</item:Phantom>
+               <!--Optional:-->
+               <item:PrimaryVendorId>?</item:PrimaryVendorId>
+               <!--Optional:-->
+               <item:ProdFlushingPrincip>?</item:ProdFlushingPrincip>
+               <!--Optional:-->
+               <item:ProdGroupId>?</item:ProdGroupId>
+               <!--Optional:-->
+               <item:ProdPoolId>?</item:ProdPoolId>
+               <!--Optional:-->
+               <item:projCategoryId>?</item:projCategoryId>
+               <!--Optional:-->
+               <item:PurchModel>?</item:PurchModel>
+               <!--Optional:-->
+               <item:RecId>?</item:RecId>
+               <!--Optional:-->
+               <item:RecVersion>?</item:RecVersion>
+               <!--Optional:-->
+               <item:ReqGroupId>?</item:ReqGroupId>
+               <!--Optional:-->
+               <item:SalesContributionRatio>?</item:SalesContributionRatio>
+               <!--Optional:-->
+               <item:SalesModel>?</item:SalesModel>
+               <!--Optional:-->
+               <item:SalesPercentMarkup>?</item:SalesPercentMarkup>
+               <!--Optional:-->
+               <item:SalesPriceModelBasic>?</item:SalesPriceModelBasic>
+               <!--Optional:-->
+               <item:ScrapConst>?</item:ScrapConst>
+               <!--Optional:-->
+               <item:ScrapVar>?</item:ScrapVar>
+               <!--Optional:-->
+               <item:SerialNumGroupId>?</item:SerialNumGroupId>
+               <!--Optional:-->
+               <item:sortCode>?</item:sortCode>
+               <!--Optional:-->
+               <item:StatisticsFactor>?</item:StatisticsFactor>
+               <!--Optional:-->
+               <item:StopExplode>?</item:StopExplode>
+               <!--Optional:-->
+               <item:TaraWeight>?</item:TaraWeight>
+               <!--Optional:-->
+               <item:TaxPackagingQty>?</item:TaxPackagingQty>
+               <!--Optional:-->
+               <item:UnitVolume>?</item:UnitVolume>
+               <!--Optional:-->
+               <item:UseAltItemId>?</item:UseAltItemId>
+               <!--Optional:-->
+               <item:Width>?</item:Width>
+               <!--Optional:-->
+               <item:WMSArrivalHandlingTime>?</item:WMSArrivalHandlingTime>
+               <!--Zero or more repetitions:-->
+               <item:Sales class="entity" action="?">
+                  <!--Optional:-->
+                  <item:AllocateMarkup>?</item:AllocateMarkup>
+                  <!--Optional:-->
+                  <item:EndDisc>?</item:EndDisc>
+                  <!--Optional:-->
+                  <item:InterCompanyBlocked>?</item:InterCompanyBlocked>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LineDisc>?</item:LineDisc>
+                  <!--Optional:-->
+                  <item:Markup>?</item:Markup>
+                  <!--Optional:-->
+                  <item:MarkupGroupId>?</item:MarkupGroupId>
+                  <!--Optional:-->
+                  <item:ModuleType>?</item:ModuleType>
+                  <!--Optional:-->
+                  <item:MultiLineDisc>?</item:MultiLineDisc>
+                  <!--Optional:-->
+                  <item:OverDeliveryPct>?</item:OverDeliveryPct>
+                  <!--Optional:-->
+                  <item:PcsPrice>?</item:PcsPrice>
+                  <!--Optional:-->
+                  <item:Price>?</item:Price>
+                  <!--Optional:-->
+                  <item:PriceDate>?</item:PriceDate>
+                  <!--Optional:-->
+                  <item:PriceQty>?</item:PriceQty>
+                  <!--Optional:-->
+                  <item:PriceUnit>?</item:PriceUnit>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:SuppItemGroupId>?</item:SuppItemGroupId>
+                  <!--Optional:-->
+                  <item:TaxItemGroupId>?</item:TaxItemGroupId>
+                  <!--Optional:-->
+                  <item:UnderDeliveryPct>?</item:UnderDeliveryPct>
+                  <!--Optional:-->
+                  <item:UnitId>?</item:UnitId>
+               </item:Sales>
+               <!--Zero or more repetitions:-->
+               <item:Purch class="entity" action="?">
+                  <!--Optional:-->
+                  <item:AllocateMarkup>?</item:AllocateMarkup>
+                  <!--Optional:-->
+                  <item:EndDisc>?</item:EndDisc>
+                  <!--Optional:-->
+                  <item:InterCompanyBlocked>?</item:InterCompanyBlocked>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LineDisc>?</item:LineDisc>
+                  <!--Optional:-->
+                  <item:Markup>?</item:Markup>
+                  <!--Optional:-->
+                  <item:MarkupGroupId>?</item:MarkupGroupId>
+                  <!--Optional:-->
+                  <item:ModuleType>?</item:ModuleType>
+                  <!--Optional:-->
+                  <item:MultiLineDisc>?</item:MultiLineDisc>
+                  <!--Optional:-->
+                  <item:OverDeliveryPct>?</item:OverDeliveryPct>
+                  <!--Optional:-->
+                  <item:PcsPrice>?</item:PcsPrice>
+                  <!--Optional:-->
+                  <item:Price>?</item:Price>
+                  <!--Optional:-->
+                  <item:PriceDate>?</item:PriceDate>
+                  <!--Optional:-->
+                  <item:PriceQty>?</item:PriceQty>
+                  <!--Optional:-->
+                  <item:PriceUnit>?</item:PriceUnit>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:SuppItemGroupId>?</item:SuppItemGroupId>
+                  <!--Optional:-->
+                  <item:TaxItemGroupId>?</item:TaxItemGroupId>
+                  <!--Optional:-->
+                  <item:UnderDeliveryPct>?</item:UnderDeliveryPct>
+                  <!--Optional:-->
+                  <item:UnitId>?</item:UnitId>
+               </item:Purch>
+               <!--Zero or more repetitions:-->
+               <item:Invent class="entity" action="?">
+                  <!--Optional:-->
+                  <item:AllocateMarkup>?</item:AllocateMarkup>
+                  <!--Optional:-->
+                  <item:EndDisc>?</item:EndDisc>
+                  <!--Optional:-->
+                  <item:InterCompanyBlocked>?</item:InterCompanyBlocked>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LineDisc>?</item:LineDisc>
+                  <!--Optional:-->
+                  <item:Markup>?</item:Markup>
+                  <!--Optional:-->
+                  <item:MarkupGroupId>?</item:MarkupGroupId>
+                  <!--Optional:-->
+                  <item:ModuleType>?</item:ModuleType>
+                  <!--Optional:-->
+                  <item:MultiLineDisc>?</item:MultiLineDisc>
+                  <!--Optional:-->
+                  <item:OverDeliveryPct>?</item:OverDeliveryPct>
+                  <!--Optional:-->
+                  <item:PcsPrice>?</item:PcsPrice>
+                  <!--Optional:-->
+                  <item:Price>?</item:Price>
+                  <!--Optional:-->
+                  <item:PriceDate>?</item:PriceDate>
+                  <!--Optional:-->
+                  <item:PriceQty>?</item:PriceQty>
+                  <!--Optional:-->
+                  <item:PriceUnit>?</item:PriceUnit>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:SuppItemGroupId>?</item:SuppItemGroupId>
+                  <!--Optional:-->
+                  <item:TaxItemGroupId>?</item:TaxItemGroupId>
+                  <!--Optional:-->
+                  <item:UnderDeliveryPct>?</item:UnderDeliveryPct>
+                  <!--Optional:-->
+                  <item:UnitId>?</item:UnitId>
+               </item:Invent>
+               <!--Zero or more repetitions:-->
+               <item:InventItemLocation class="entity" action="?">
+                  <!--Optional:-->
+                  <item:CountGroupId>?</item:CountGroupId>
+                  <!--Optional:-->
+                  <item:CountingJournalId>?</item:CountingJournalId>
+                  <!--Optional:-->
+                  <item:CountingStarted>?</item:CountingStarted>
+                  <!--Optional:-->
+                  <item:inventDimId>?</item:inventDimId>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:WMSLocationIdDefaultIssue>?</item:WMSLocationIdDefaultIssue>
+                  <!--Optional:-->
+                  <item:WMSLocationIdDefaultReceipt>?</item:WMSLocationIdDefaultReceipt>
+                  <!--Optional:-->
+                  <item:wMSPickingLocation>?</item:wMSPickingLocation>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDim class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDim>
+               </item:InventItemLocation>
+               <!--Zero or more repetitions:-->
+               <item:InventTxt class="entity" action="?">
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:ItemId>?</item:ItemId>
+                  <item:LanguageId>?</item:LanguageId>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:Txt>?</item:Txt>
+               </item:InventTxt>
+               <!--Zero or more repetitions:-->
+               <item:InventTableDocuRef class="entity" action="?">
+                  <!--Optional:-->
+                  <item:ActualCompanyId>?</item:ActualCompanyId>
+                  <!--Optional:-->
+                  <item:AuthorId>?</item:AuthorId>
+                  <!--Optional:-->
+                  <item:ContactPersonId>?</item:ContactPersonId>
+                  <!--Optional:-->
+                  <item:EncyclopediaItemId>?</item:EncyclopediaItemId>
+                  <!--Optional:-->
+                  <item:Name>?</item:Name>
+                  <!--Optional:-->
+                  <item:Notes>?</item:Notes>
+                  <!--Optional:-->
+                  <item:PartyId>?</item:PartyId>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:RefCompanyId>?</item:RefCompanyId>
+                  <!--Optional:-->
+                  <item:RefRecId>?</item:RefRecId>
+                  <!--Optional:-->
+                  <item:RefTableId>?</item:RefTableId>
+                  <!--Optional:-->
+                  <item:Restriction>?</item:Restriction>
+                  <!--Optional:-->
+                  <item:smmTable>?</item:smmTable>
+                  <!--Optional:-->
+                  <item:TypeId>?</item:TypeId>
+               </item:InventTableDocuRef>
+               <!--Zero or more repetitions:-->
+               <item:InventItemSalesSetup class="entity" action="?">
+                  <!--Optional:-->
+                  <item:ATPInclPlannedOrders>?</item:ATPInclPlannedOrders>
+                  <!--Optional:-->
+                  <item:ATPTimeFence>?</item:ATPTimeFence>
+                  <!--Optional:-->
+                  <item:DeliveryDateControlType>?</item:DeliveryDateControlType>
+                  <!--Optional:-->
+                  <item:HighestQty>?</item:HighestQty>
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:InventDimIdDefault>?</item:InventDimIdDefault>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LeadTime>?</item:LeadTime>
+                  <!--Optional:-->
+                  <item:LowestQty>?</item:LowestQty>
+                  <!--Optional:-->
+                  <item:MandatoryInventLocation>?</item:MandatoryInventLocation>
+                  <!--Optional:-->
+                  <item:MandatoryInventSite>?</item:MandatoryInventSite>
+                  <!--Optional:-->
+                  <item:MultipleQty>?</item:MultipleQty>
+                  <!--Optional:-->
+                  <item:Override>?</item:Override>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:StandardQty>?</item:StandardQty>
+                  <!--Optional:-->
+                  <item:Stopped>?</item:Stopped>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDimSalesSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDimSalesSetup>
+                  <!--Zero or more repetitions:-->
+                  <item:DefaultInventDimSalesSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:DefaultInventDimSalesSetup>
+               </item:InventItemSalesSetup>
+               <!--Zero or more repetitions:-->
+               <item:InventItemPurchSetup class="entity" action="?">
+                  <!--Optional:-->
+                  <item:CalendarDays>?</item:CalendarDays>
+                  <!--Optional:-->
+                  <item:HighestQty>?</item:HighestQty>
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:InventDimIdDefault>?</item:InventDimIdDefault>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LeadTime>?</item:LeadTime>
+                  <!--Optional:-->
+                  <item:LowestQty>?</item:LowestQty>
+                  <!--Optional:-->
+                  <item:MandatoryInventLocation>?</item:MandatoryInventLocation>
+                  <!--Optional:-->
+                  <item:MandatoryInventSite>?</item:MandatoryInventSite>
+                  <!--Optional:-->
+                  <item:MultipleQty>?</item:MultipleQty>
+                  <!--Optional:-->
+                  <item:Override>?</item:Override>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:StandardQty>?</item:StandardQty>
+                  <!--Optional:-->
+                  <item:Stopped>?</item:Stopped>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDimPurchSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDimPurchSetup>
+                  <!--Zero or more repetitions:-->
+                  <item:DefaultInventDimPurchSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:DefaultInventDimPurchSetup>
+               </item:InventItemPurchSetup>
+               <!--Zero or more repetitions:-->
+               <item:InventItemInventSetup class="entity" action="?">
+                  <!--Optional:-->
+                  <item:ATPInclPlannedOrders>?</item:ATPInclPlannedOrders>
+                  <!--Optional:-->
+                  <item:ATPTimeFence>?</item:ATPTimeFence>
+                  <!--Optional:-->
+                  <item:CalendarDays>?</item:CalendarDays>
+                  <!--Optional:-->
+                  <item:DeliveryDateControlType>?</item:DeliveryDateControlType>
+                  <!--Optional:-->
+                  <item:HighestQty>?</item:HighestQty>
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:InventDimIdDefault>?</item:InventDimIdDefault>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LeadTime>?</item:LeadTime>
+                  <!--Optional:-->
+                  <item:LowestQty>?</item:LowestQty>
+                  <!--Optional:-->
+                  <item:MandatoryInventLocation>?</item:MandatoryInventLocation>
+                  <!--Optional:-->
+                  <item:MandatoryInventSite>?</item:MandatoryInventSite>
+                  <!--Optional:-->
+                  <item:MultipleQty>?</item:MultipleQty>
+                  <!--Optional:-->
+                  <item:Override>?</item:Override>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:StandardQty>?</item:StandardQty>
+                  <!--Optional:-->
+                  <item:Stopped>?</item:Stopped>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDimInventSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDimInventSetup>
+                  <!--Zero or more repetitions:-->
+                  <item:DefaultInventDimInventSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:DefaultInventDimInventSetup>
+               </item:InventItemInventSetup>
+            </item:InventTable>
+         </item:Item>
+      </ser:ItemServiceFindResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="findKeys" interface="BasicHttpBinding_ItemService" operation="findKeys"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:ent="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:ent1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceFindKeysResponse>
+         <!--Optional:-->
+         <ent:EntityKeyList>
+            <!--Zero or more repetitions:-->
+            <ent1:EntityKey>
+               <ent1:KeyData>
+                  <!--1 or more repetitions:-->
+                  <ent1:KeyField>
+                     <ent1:Field>?</ent1:Field>
+                     <ent1:Value>?</ent1:Value>
+                  </ent1:KeyField>
+               </ent1:KeyData>
+            </ent1:EntityKey>
+         </ent:EntityKeyList>
+      </ser:ItemServiceFindKeysResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="read" interface="BasicHttpBinding_ItemService" operation="read"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:item="http://schemas.microsoft.com/dynamics/2008/01/documents/Item">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ItemServiceReadResponse>
+         <!--Optional:-->
+         <item:Item>
+            <!--Optional:-->
+            <item:DocPurpose>?</item:DocPurpose>
+            <!--Optional:-->
+            <item:SenderId>?</item:SenderId>
+            <!--Zero or more repetitions:-->
+            <item:InventTable class="entity" action="?">
+               <!--Optional:-->
+               <item:_DocumentHash>?</item:_DocumentHash>
+               <!--Optional:-->
+               <item:ABCContributionMargin>?</item:ABCContributionMargin>
+               <!--Optional:-->
+               <item:ABCRevenue>?</item:ABCRevenue>
+               <!--Optional:-->
+               <item:ABCTieUp>?</item:ABCTieUp>
+               <!--Optional:-->
+               <item:ABCValue>?</item:ABCValue>
+               <!--Optional:-->
+               <item:AltItemId>?</item:AltItemId>
+               <!--Optional:-->
+               <item:AutoReportFinished>?</item:AutoReportFinished>
+               <!--Optional:-->
+               <item:BatchNumGroupId>?</item:BatchNumGroupId>
+               <!--Optional:-->
+               <item:bhnCompany>?</item:bhnCompany>
+               <!--Optional:-->
+               <item:bhnDivision>?</item:bhnDivision>
+               <!--Optional:-->
+               <item:bhnSubGroup>?</item:bhnSubGroup>
+               <!--Optional:-->
+               <item:BOMCalcGroupId>?</item:BOMCalcGroupId>
+               <!--Optional:-->
+               <item:BOMLevel>?</item:BOMLevel>
+               <!--Optional:-->
+               <item:BOMManualReceipt>?</item:BOMManualReceipt>
+               <!--Optional:-->
+               <item:BOMUnitId>?</item:BOMUnitId>
+               <!--Optional:-->
+               <item:CommissionGroupId>?</item:CommissionGroupId>
+               <!--Optional:-->
+               <item:CostGroupId>?</item:CostGroupId>
+               <!--Optional:-->
+               <item:CostModel>?</item:CostModel>
+               <!--Optional:-->
+               <item:Density>?</item:Density>
+               <!--Optional:-->
+               <item:Depth>?</item:Depth>
+               <!--Optional:-->
+               <item:Dimension>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+                  <item:element>?</item:element>
+               </item:Dimension>
+               <item:DimGroupId>?</item:DimGroupId>
+               <!--Optional:-->
+               <item:EPCManager>?</item:EPCManager>
+               <!--Optional:-->
+               <item:grossDepth>?</item:grossDepth>
+               <!--Optional:-->
+               <item:grossHeight>?</item:grossHeight>
+               <!--Optional:-->
+               <item:grossWidth>?</item:grossWidth>
+               <!--Optional:-->
+               <item:Height>?</item:Height>
+               <!--Optional:-->
+               <item:Intracode>?</item:Intracode>
+               <!--Optional:-->
+               <item:IntraUnit>?</item:IntraUnit>
+               <!--Optional:-->
+               <item:ItemBuyerGroupId>?</item:ItemBuyerGroupId>
+               <!--Optional:-->
+               <item:ItemDimCombinationAutoCreate>?</item:ItemDimCombinationAutoCreate>
+               <!--Optional:-->
+               <item:ItemDimCostPrice>?</item:ItemDimCostPrice>
+               <item:ItemGroupId>?</item:ItemGroupId>
+               <!--Optional:-->
+               <item:ItemId>?</item:ItemId>
+               <!--Optional:-->
+               <item:ItemIdCompany>?</item:ItemIdCompany>
+               <!--Optional:-->
+               <item:ItemName>?</item:ItemName>
+               <!--Optional:-->
+               <item:ItemPriceToleranceGroupId>?</item:ItemPriceToleranceGroupId>
+               <!--Optional:-->
+               <item:ItemType>?</item:ItemType>
+               <!--Optional:-->
+               <item:jsSellEndDate>?</item:jsSellEndDate>
+               <!--Optional:-->
+               <item:jsSellStartDate>?</item:jsSellStartDate>
+               <item:ModelGroupId>?</item:ModelGroupId>
+               <!--Optional:-->
+               <item:NameAlias>?</item:NameAlias>
+               <!--Optional:-->
+               <item:NetWeight>?</item:NetWeight>
+               <!--Optional:-->
+               <item:OrigCountryRegionId>?</item:OrigCountryRegionId>
+               <!--Optional:-->
+               <item:OrigStateId>?</item:OrigStateId>
+               <!--Optional:-->
+               <item:PackagingGroupId>?</item:PackagingGroupId>
+               <!--Optional:-->
+               <item:PBAAutoStart>?</item:PBAAutoStart>
+               <!--Optional:-->
+               <item:PBAHideApproval>?</item:PBAHideApproval>
+               <!--Optional:-->
+               <item:PBAHideDialog>?</item:PBAHideDialog>
+               <!--Optional:-->
+               <item:PBAInventItemGroupId>?</item:PBAInventItemGroupId>
+               <!--Optional:-->
+               <item:PBAItemAutoGenerated>?</item:PBAItemAutoGenerated>
+               <!--Optional:-->
+               <item:PBAItemConfigurable>?</item:PBAItemConfigurable>
+               <!--Optional:-->
+               <item:PBAMandatoryConfig>?</item:PBAMandatoryConfig>
+               <!--Optional:-->
+               <item:Phantom>?</item:Phantom>
+               <!--Optional:-->
+               <item:PrimaryVendorId>?</item:PrimaryVendorId>
+               <!--Optional:-->
+               <item:ProdFlushingPrincip>?</item:ProdFlushingPrincip>
+               <!--Optional:-->
+               <item:ProdGroupId>?</item:ProdGroupId>
+               <!--Optional:-->
+               <item:ProdPoolId>?</item:ProdPoolId>
+               <!--Optional:-->
+               <item:projCategoryId>?</item:projCategoryId>
+               <!--Optional:-->
+               <item:PurchModel>?</item:PurchModel>
+               <!--Optional:-->
+               <item:RecId>?</item:RecId>
+               <!--Optional:-->
+               <item:RecVersion>?</item:RecVersion>
+               <!--Optional:-->
+               <item:ReqGroupId>?</item:ReqGroupId>
+               <!--Optional:-->
+               <item:SalesContributionRatio>?</item:SalesContributionRatio>
+               <!--Optional:-->
+               <item:SalesModel>?</item:SalesModel>
+               <!--Optional:-->
+               <item:SalesPercentMarkup>?</item:SalesPercentMarkup>
+               <!--Optional:-->
+               <item:SalesPriceModelBasic>?</item:SalesPriceModelBasic>
+               <!--Optional:-->
+               <item:ScrapConst>?</item:ScrapConst>
+               <!--Optional:-->
+               <item:ScrapVar>?</item:ScrapVar>
+               <!--Optional:-->
+               <item:SerialNumGroupId>?</item:SerialNumGroupId>
+               <!--Optional:-->
+               <item:sortCode>?</item:sortCode>
+               <!--Optional:-->
+               <item:StatisticsFactor>?</item:StatisticsFactor>
+               <!--Optional:-->
+               <item:StopExplode>?</item:StopExplode>
+               <!--Optional:-->
+               <item:TaraWeight>?</item:TaraWeight>
+               <!--Optional:-->
+               <item:TaxPackagingQty>?</item:TaxPackagingQty>
+               <!--Optional:-->
+               <item:UnitVolume>?</item:UnitVolume>
+               <!--Optional:-->
+               <item:UseAltItemId>?</item:UseAltItemId>
+               <!--Optional:-->
+               <item:Width>?</item:Width>
+               <!--Optional:-->
+               <item:WMSArrivalHandlingTime>?</item:WMSArrivalHandlingTime>
+               <!--Zero or more repetitions:-->
+               <item:Sales class="entity" action="?">
+                  <!--Optional:-->
+                  <item:AllocateMarkup>?</item:AllocateMarkup>
+                  <!--Optional:-->
+                  <item:EndDisc>?</item:EndDisc>
+                  <!--Optional:-->
+                  <item:InterCompanyBlocked>?</item:InterCompanyBlocked>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LineDisc>?</item:LineDisc>
+                  <!--Optional:-->
+                  <item:Markup>?</item:Markup>
+                  <!--Optional:-->
+                  <item:MarkupGroupId>?</item:MarkupGroupId>
+                  <!--Optional:-->
+                  <item:ModuleType>?</item:ModuleType>
+                  <!--Optional:-->
+                  <item:MultiLineDisc>?</item:MultiLineDisc>
+                  <!--Optional:-->
+                  <item:OverDeliveryPct>?</item:OverDeliveryPct>
+                  <!--Optional:-->
+                  <item:PcsPrice>?</item:PcsPrice>
+                  <!--Optional:-->
+                  <item:Price>?</item:Price>
+                  <!--Optional:-->
+                  <item:PriceDate>?</item:PriceDate>
+                  <!--Optional:-->
+                  <item:PriceQty>?</item:PriceQty>
+                  <!--Optional:-->
+                  <item:PriceUnit>?</item:PriceUnit>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:SuppItemGroupId>?</item:SuppItemGroupId>
+                  <!--Optional:-->
+                  <item:TaxItemGroupId>?</item:TaxItemGroupId>
+                  <!--Optional:-->
+                  <item:UnderDeliveryPct>?</item:UnderDeliveryPct>
+                  <!--Optional:-->
+                  <item:UnitId>?</item:UnitId>
+               </item:Sales>
+               <!--Zero or more repetitions:-->
+               <item:Purch class="entity" action="?">
+                  <!--Optional:-->
+                  <item:AllocateMarkup>?</item:AllocateMarkup>
+                  <!--Optional:-->
+                  <item:EndDisc>?</item:EndDisc>
+                  <!--Optional:-->
+                  <item:InterCompanyBlocked>?</item:InterCompanyBlocked>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LineDisc>?</item:LineDisc>
+                  <!--Optional:-->
+                  <item:Markup>?</item:Markup>
+                  <!--Optional:-->
+                  <item:MarkupGroupId>?</item:MarkupGroupId>
+                  <!--Optional:-->
+                  <item:ModuleType>?</item:ModuleType>
+                  <!--Optional:-->
+                  <item:MultiLineDisc>?</item:MultiLineDisc>
+                  <!--Optional:-->
+                  <item:OverDeliveryPct>?</item:OverDeliveryPct>
+                  <!--Optional:-->
+                  <item:PcsPrice>?</item:PcsPrice>
+                  <!--Optional:-->
+                  <item:Price>?</item:Price>
+                  <!--Optional:-->
+                  <item:PriceDate>?</item:PriceDate>
+                  <!--Optional:-->
+                  <item:PriceQty>?</item:PriceQty>
+                  <!--Optional:-->
+                  <item:PriceUnit>?</item:PriceUnit>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:SuppItemGroupId>?</item:SuppItemGroupId>
+                  <!--Optional:-->
+                  <item:TaxItemGroupId>?</item:TaxItemGroupId>
+                  <!--Optional:-->
+                  <item:UnderDeliveryPct>?</item:UnderDeliveryPct>
+                  <!--Optional:-->
+                  <item:UnitId>?</item:UnitId>
+               </item:Purch>
+               <!--Zero or more repetitions:-->
+               <item:Invent class="entity" action="?">
+                  <!--Optional:-->
+                  <item:AllocateMarkup>?</item:AllocateMarkup>
+                  <!--Optional:-->
+                  <item:EndDisc>?</item:EndDisc>
+                  <!--Optional:-->
+                  <item:InterCompanyBlocked>?</item:InterCompanyBlocked>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LineDisc>?</item:LineDisc>
+                  <!--Optional:-->
+                  <item:Markup>?</item:Markup>
+                  <!--Optional:-->
+                  <item:MarkupGroupId>?</item:MarkupGroupId>
+                  <!--Optional:-->
+                  <item:ModuleType>?</item:ModuleType>
+                  <!--Optional:-->
+                  <item:MultiLineDisc>?</item:MultiLineDisc>
+                  <!--Optional:-->
+                  <item:OverDeliveryPct>?</item:OverDeliveryPct>
+                  <!--Optional:-->
+                  <item:PcsPrice>?</item:PcsPrice>
+                  <!--Optional:-->
+                  <item:Price>?</item:Price>
+                  <!--Optional:-->
+                  <item:PriceDate>?</item:PriceDate>
+                  <!--Optional:-->
+                  <item:PriceQty>?</item:PriceQty>
+                  <!--Optional:-->
+                  <item:PriceUnit>?</item:PriceUnit>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:SuppItemGroupId>?</item:SuppItemGroupId>
+                  <!--Optional:-->
+                  <item:TaxItemGroupId>?</item:TaxItemGroupId>
+                  <!--Optional:-->
+                  <item:UnderDeliveryPct>?</item:UnderDeliveryPct>
+                  <!--Optional:-->
+                  <item:UnitId>?</item:UnitId>
+               </item:Invent>
+               <!--Zero or more repetitions:-->
+               <item:InventItemLocation class="entity" action="?">
+                  <!--Optional:-->
+                  <item:CountGroupId>?</item:CountGroupId>
+                  <!--Optional:-->
+                  <item:CountingJournalId>?</item:CountingJournalId>
+                  <!--Optional:-->
+                  <item:CountingStarted>?</item:CountingStarted>
+                  <!--Optional:-->
+                  <item:inventDimId>?</item:inventDimId>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:WMSLocationIdDefaultIssue>?</item:WMSLocationIdDefaultIssue>
+                  <!--Optional:-->
+                  <item:WMSLocationIdDefaultReceipt>?</item:WMSLocationIdDefaultReceipt>
+                  <!--Optional:-->
+                  <item:wMSPickingLocation>?</item:wMSPickingLocation>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDim class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDim>
+               </item:InventItemLocation>
+               <!--Zero or more repetitions:-->
+               <item:InventTxt class="entity" action="?">
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:ItemId>?</item:ItemId>
+                  <item:LanguageId>?</item:LanguageId>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:Txt>?</item:Txt>
+               </item:InventTxt>
+               <!--Zero or more repetitions:-->
+               <item:InventTableDocuRef class="entity" action="?">
+                  <!--Optional:-->
+                  <item:ActualCompanyId>?</item:ActualCompanyId>
+                  <!--Optional:-->
+                  <item:AuthorId>?</item:AuthorId>
+                  <!--Optional:-->
+                  <item:ContactPersonId>?</item:ContactPersonId>
+                  <!--Optional:-->
+                  <item:EncyclopediaItemId>?</item:EncyclopediaItemId>
+                  <!--Optional:-->
+                  <item:Name>?</item:Name>
+                  <!--Optional:-->
+                  <item:Notes>?</item:Notes>
+                  <!--Optional:-->
+                  <item:PartyId>?</item:PartyId>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:RefCompanyId>?</item:RefCompanyId>
+                  <!--Optional:-->
+                  <item:RefRecId>?</item:RefRecId>
+                  <!--Optional:-->
+                  <item:RefTableId>?</item:RefTableId>
+                  <!--Optional:-->
+                  <item:Restriction>?</item:Restriction>
+                  <!--Optional:-->
+                  <item:smmTable>?</item:smmTable>
+                  <!--Optional:-->
+                  <item:TypeId>?</item:TypeId>
+               </item:InventTableDocuRef>
+               <!--Zero or more repetitions:-->
+               <item:InventItemSalesSetup class="entity" action="?">
+                  <!--Optional:-->
+                  <item:ATPInclPlannedOrders>?</item:ATPInclPlannedOrders>
+                  <!--Optional:-->
+                  <item:ATPTimeFence>?</item:ATPTimeFence>
+                  <!--Optional:-->
+                  <item:DeliveryDateControlType>?</item:DeliveryDateControlType>
+                  <!--Optional:-->
+                  <item:HighestQty>?</item:HighestQty>
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:InventDimIdDefault>?</item:InventDimIdDefault>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LeadTime>?</item:LeadTime>
+                  <!--Optional:-->
+                  <item:LowestQty>?</item:LowestQty>
+                  <!--Optional:-->
+                  <item:MandatoryInventLocation>?</item:MandatoryInventLocation>
+                  <!--Optional:-->
+                  <item:MandatoryInventSite>?</item:MandatoryInventSite>
+                  <!--Optional:-->
+                  <item:MultipleQty>?</item:MultipleQty>
+                  <!--Optional:-->
+                  <item:Override>?</item:Override>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:StandardQty>?</item:StandardQty>
+                  <!--Optional:-->
+                  <item:Stopped>?</item:Stopped>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDimSalesSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDimSalesSetup>
+                  <!--Zero or more repetitions:-->
+                  <item:DefaultInventDimSalesSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:DefaultInventDimSalesSetup>
+               </item:InventItemSalesSetup>
+               <!--Zero or more repetitions:-->
+               <item:InventItemPurchSetup class="entity" action="?">
+                  <!--Optional:-->
+                  <item:CalendarDays>?</item:CalendarDays>
+                  <!--Optional:-->
+                  <item:HighestQty>?</item:HighestQty>
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:InventDimIdDefault>?</item:InventDimIdDefault>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LeadTime>?</item:LeadTime>
+                  <!--Optional:-->
+                  <item:LowestQty>?</item:LowestQty>
+                  <!--Optional:-->
+                  <item:MandatoryInventLocation>?</item:MandatoryInventLocation>
+                  <!--Optional:-->
+                  <item:MandatoryInventSite>?</item:MandatoryInventSite>
+                  <!--Optional:-->
+                  <item:MultipleQty>?</item:MultipleQty>
+                  <!--Optional:-->
+                  <item:Override>?</item:Override>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:StandardQty>?</item:StandardQty>
+                  <!--Optional:-->
+                  <item:Stopped>?</item:Stopped>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDimPurchSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDimPurchSetup>
+                  <!--Zero or more repetitions:-->
+                  <item:DefaultInventDimPurchSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:DefaultInventDimPurchSetup>
+               </item:InventItemPurchSetup>
+               <!--Zero or more repetitions:-->
+               <item:InventItemInventSetup class="entity" action="?">
+                  <!--Optional:-->
+                  <item:ATPInclPlannedOrders>?</item:ATPInclPlannedOrders>
+                  <!--Optional:-->
+                  <item:ATPTimeFence>?</item:ATPTimeFence>
+                  <!--Optional:-->
+                  <item:CalendarDays>?</item:CalendarDays>
+                  <!--Optional:-->
+                  <item:DeliveryDateControlType>?</item:DeliveryDateControlType>
+                  <!--Optional:-->
+                  <item:HighestQty>?</item:HighestQty>
+                  <!--Optional:-->
+                  <item:InventDimId>?</item:InventDimId>
+                  <!--Optional:-->
+                  <item:InventDimIdDefault>?</item:InventDimIdDefault>
+                  <item:ItemId>?</item:ItemId>
+                  <!--Optional:-->
+                  <item:LeadTime>?</item:LeadTime>
+                  <!--Optional:-->
+                  <item:LowestQty>?</item:LowestQty>
+                  <!--Optional:-->
+                  <item:MandatoryInventLocation>?</item:MandatoryInventLocation>
+                  <!--Optional:-->
+                  <item:MandatoryInventSite>?</item:MandatoryInventSite>
+                  <!--Optional:-->
+                  <item:MultipleQty>?</item:MultipleQty>
+                  <!--Optional:-->
+                  <item:Override>?</item:Override>
+                  <!--Optional:-->
+                  <item:RecId>?</item:RecId>
+                  <!--Optional:-->
+                  <item:RecVersion>?</item:RecVersion>
+                  <!--Optional:-->
+                  <item:StandardQty>?</item:StandardQty>
+                  <!--Optional:-->
+                  <item:Stopped>?</item:Stopped>
+                  <!--Zero or more repetitions:-->
+                  <item:InventDimInventSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:InventDimInventSetup>
+                  <!--Zero or more repetitions:-->
+                  <item:DefaultInventDimInventSetup class="entity" action="?">
+                     <!--Optional:-->
+                     <item:InventBatchId>?</item:InventBatchId>
+                     <!--Optional:-->
+                     <item:inventDimId>?</item:inventDimId>
+                     <!--Optional:-->
+                     <item:InventLocationId>?</item:InventLocationId>
+                     <!--Optional:-->
+                     <item:inventSerialId>?</item:inventSerialId>
+                     <!--Optional:-->
+                     <item:InventSiteId>?</item:InventSiteId>
+                     <!--Optional:-->
+                     <item:RecId>?</item:RecId>
+                     <!--Optional:-->
+                     <item:RecVersion>?</item:RecVersion>
+                     <!--Optional:-->
+                     <item:wMSLocationId>?</item:wMSLocationId>
+                  </item:DefaultInventDimInventSetup>
+               </item:InventItemInventSetup>
+            </item:InventTable>
+         </item:Item>
+      </ser:ItemServiceReadResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

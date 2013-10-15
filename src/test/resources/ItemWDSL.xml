@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<wsdl:definitions name="ItemService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+<wsp:Policy wsu:Id="BasicHttpBinding_ItemService_policy">
+<wsp:ExactlyOne>
+<wsp:All>
+  <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" /> 
+  </wsp:All>
+  </wsp:ExactlyOne>
+  </wsp:Policy>
+<wsdl:types>
+<xsd:schema targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services/Imports">
+  <xsd:import schemaLocation="itemservice_XSD0" namespace="http://schemas.microsoft.com/dynamics/2008/01/services" /> 
+  <xsd:import schemaLocation="itemservice_XSD6" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault" /> 
+  <xsd:import schemaLocation="itemservice_XSD1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" /> 
+  <xsd:import schemaLocation="itemservice_XSD2" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria" /> 
+  <xsd:import schemaLocation="itemservice_XSD3" /> 
+  <xsd:import schemaLocation="itemservice_XSD4" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" /> 
+  <xsd:import schemaLocation="itemservice_XSD5" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey" /> 
+  <xsd:import schemaLocation="itemservice_XSD7" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Item" /> 
+  </xsd:schema>
+  </wsdl:types>
+<wsdl:message name="ItemServiceFindKeysRequest">
+  <wsdl:part name="parameters" element="tns:ItemServiceFindKeysRequest" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceFindKeysResponse">
+  <wsdl:part name="parameters" element="tns:ItemServiceFindKeysResponse" /> 
+  </wsdl:message>
+<wsdl:message name="ItemService_findKeys_AifFaultFault_FaultMessage">
+  <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceCreateRequest">
+  <wsdl:part name="parameters" element="tns:ItemServiceCreateRequest" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceCreateResponse">
+  <wsdl:part name="parameters" element="tns:ItemServiceCreateResponse" /> 
+  </wsdl:message>
+<wsdl:message name="ItemService_create_AifFaultFault_FaultMessage">
+  <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceFindRequest">
+  <wsdl:part name="parameters" element="tns:ItemServiceFindRequest" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceFindResponse">
+  <wsdl:part name="parameters" element="tns:ItemServiceFindResponse" /> 
+  </wsdl:message>
+<wsdl:message name="ItemService_find_AifFaultFault_FaultMessage">
+  <wsdl:part name="detail" element="q3:AifFault" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceReadRequest">
+  <wsdl:part name="parameters" element="tns:ItemServiceReadRequest" /> 
+  </wsdl:message>
+<wsdl:message name="ItemServiceReadResponse">
+  <wsdl:part name="parameters" element="tns:ItemServiceReadResponse" /> 
+  </wsdl:message>
+<wsdl:message name="ItemService_read_AifFaultFault_FaultMessage">
+  <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault" /> 
+  </wsdl:message>
+<wsdl:portType name="ItemService">
+<wsdl:operation name="findKeys">
+  <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys" name="ItemServiceFindKeysRequest" message="tns:ItemServiceFindKeysRequest" /> 
+  <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeysResponse" name="ItemServiceFindKeysResponse" message="tns:ItemServiceFindKeysResponse" /> 
+  <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeysAifFaultFault" name="AifFaultFault" message="tns:ItemService_findKeys_AifFaultFault_FaultMessage" /> 
+  </wsdl:operation>
+<wsdl:operation name="create">
+  <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create" name="ItemServiceCreateRequest" message="tns:ItemServiceCreateRequest" /> 
+  <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/createResponse" name="ItemServiceCreateResponse" message="tns:ItemServiceCreateResponse" /> 
+  <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/createAifFaultFault" name="AifFaultFault" message="tns:ItemService_create_AifFaultFault_FaultMessage" /> 
+  </wsdl:operation>
+<wsdl:operation name="find">
+  <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find" name="ItemServiceFindRequest" message="tns:ItemServiceFindRequest" /> 
+  <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findResponse" name="ItemServiceFindResponse" message="tns:ItemServiceFindResponse" /> 
+  <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findAifFaultFault" name="AifFaultFault" message="tns:ItemService_find_AifFaultFault_FaultMessage" /> 
+  </wsdl:operation>
+<wsdl:operation name="read">
+  <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read" name="ItemServiceReadRequest" message="tns:ItemServiceReadRequest" /> 
+  <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/readResponse" name="ItemServiceReadResponse" message="tns:ItemServiceReadResponse" /> 
+  <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/readAifFaultFault" name="AifFaultFault" message="tns:ItemService_read_AifFaultFault_FaultMessage" /> 
+  </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding name="BasicHttpBinding_ItemService" type="tns:ItemService">
+  <wsp:PolicyReference URI="#BasicHttpBinding_ItemService_policy" /> 
+  <soap:binding transport="http://schemas.xmlsoap.org/soap/http" /> 
+<wsdl:operation name="findKeys">
+  <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/findKeys" style="document" /> 
+<wsdl:input name="ItemServiceFindKeysRequest">
+  <soap:body use="literal" /> 
+  </wsdl:input>
+<wsdl:output name="ItemServiceFindKeysResponse">
+  <soap:body use="literal" /> 
+  </wsdl:output>
+<wsdl:fault name="AifFaultFault">
+  <soap:fault name="AifFaultFault" use="literal" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+<wsdl:operation name="create">
+  <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/create" style="document" /> 
+<wsdl:input name="ItemServiceCreateRequest">
+  <soap:body use="literal" /> 
+  </wsdl:input>
+<wsdl:output name="ItemServiceCreateResponse">
+  <soap:body use="literal" /> 
+  </wsdl:output>
+<wsdl:fault name="AifFaultFault">
+  <soap:fault name="AifFaultFault" use="literal" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+<wsdl:operation name="find">
+  <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/find" style="document" /> 
+<wsdl:input name="ItemServiceFindRequest">
+  <soap:body use="literal" /> 
+  </wsdl:input>
+<wsdl:output name="ItemServiceFindResponse">
+  <soap:body use="literal" /> 
+  </wsdl:output>
+<wsdl:fault name="AifFaultFault">
+  <soap:fault name="AifFaultFault" use="literal" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+<wsdl:operation name="read">
+  <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/ItemService/read" style="document" /> 
+<wsdl:input name="ItemServiceReadRequest">
+  <soap:body use="literal" /> 
+  </wsdl:input>
+<wsdl:output name="ItemServiceReadResponse">
+  <soap:body use="literal" /> 
+  </wsdl:output>
+<wsdl:fault name="AifFaultFault">
+  <soap:fault name="AifFaultFault" use="literal" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  </wsdl:binding>
+<wsdl:service name="ItemService">
+<wsdl:port name="BasicHttpBinding_ItemService" binding="tns:BasicHttpBinding_ItemService">
+  <soap:address location="http://vmsclapmdsrq01w.devqa.local/MicrosoftDynamicsAXAif50/itemservice.svc" /> 
+  </wsdl:port>
+  </wsdl:service>
+  </wsdl:definitions>
